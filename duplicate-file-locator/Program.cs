@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
+
 using System.Security.Cryptography;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
-using System;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Text;
 
 namespace duplicate_file_locator
 {
@@ -16,29 +12,67 @@ namespace duplicate_file_locator
     internal class Program
     {
         // Function below usies code from the MD5 Comparison.
-        
+
+        static string ByteArrayToString(byte[] arrInput)
+        {
+            int i;
+            StringBuilder sOutput = new StringBuilder(arrInput.Length);
+            for (i = 0; i < arrInput.Length; i++)
+            {
+                sOutput.Append(arrInput[i].ToString("X2"));
+            }
+            return sOutput.ToString();
+        }
+
+        static string CreateHashOfImage(Bitmap img)
+        {
+            byte[] tmpSource;
+            byte[] tmpHash;
+
+            //Create a byte array from source data.
+            MemoryStream stream = new MemoryStream();
+            img.Save(stream, System.Drawing.Imaging.ImageFormat.Bmp);
+            tmpSource = stream.ToArray();
+
+            //Compute hash based on source data.
+            tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
+
+            return ByteArrayToString(tmpHash);
+        }
+
         static bool CompareFiles(string file1, string file2)
         {
-            FileInfo FileInfo1 = new FileInfo(file1);
-            FileInfo FileInfo2 = new FileInfo(file2);
+            Bitmap image1 = new Bitmap(file1);
+            Bitmap image2 = new Bitmap(file2);
 
-            var fileStream1 = FileInfo1.OpenRead();
-            var fileStream2 = FileInfo2.OpenRead();
-
-            var md5Creator = MD5.Create();
-
-            var fileStream1Hash = md5Creator.ComputeHash(fileStream1);
-            var fileStream2Hash = md5Creator.ComputeHash(fileStream2);
-
-            for (var i = 0; i < fileStream1Hash.Length; i++)
+            if (image1.Width != image2.Width || image1.Height != image2.Height)
             {
-                if (fileStream1Hash[i] != fileStream2Hash[i])
-                {
-                    return false;
-                }
+                return false;
             }
-            return true;
+
+            //for (int i=0; i < image1.Width; i++)
+            //{
+            //    for (int j = 0; j < image1.Height; j++)
+            //    {
+            //        var img1_ref = image1.GetPixel(i, j);
+            //        var img2_ref = image2.GetPixel(i, j);
+
+            //        if (img1_ref != img2_ref)
+            //        {
+            //            return false;
+            //        }
+            //    }
+            //}
+
+            string image1Hash = CreateHashOfImage(image1);
+            string image2Hash = CreateHashOfImage(image2);
+
+            return image1Hash == image2Hash;
+
+
+           
         }
+
 
         static void Main(string[] args)
         {
