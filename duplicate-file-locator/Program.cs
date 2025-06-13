@@ -1,43 +1,43 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Security.Cryptography;
+using System.Text;
+
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Text;
 
 namespace duplicate_file_locator
 {
+
     internal class Program
     {
-
-        static string ByteArrayToString(byte[] arrInput)
-        {
-            int i;
-            StringBuilder sOutput = new StringBuilder(arrInput.Length);
-            for (i = 0; i < arrInput.Length; i++)
-            {
-                sOutput.Append(arrInput[i].ToString("X2"));
-            }
-            return sOutput.ToString();
-        }
-
-        static string CreateHashOfFile(string filePath)
-        {
-            byte[] tmpSource;
-            byte[] tmpHash;
-
-            //Create a byte array from source data.
-            tmpSource = ASCIIEncoding.ASCII.GetBytes(filePath);
-
-            //Compute hash based on source data.
-            tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
-
-            return ByteArrayToString(tmpHash);
-        }
-
+        // Function below usies code from the MD5 Comparison.
+        
         static bool CompareFiles(string file1, string file2)
         {
-            string file1Hash = CreateHashOfFile(file1);
-            string file2Hash = CreateHashOfFile(file2);
+            FileInfo FileInfo1 = new FileInfo(file1);
+            FileInfo FileInfo2 = new FileInfo(file2);
 
-            return file1Hash == file2Hash;
+            var fileStream1 = FileInfo1.OpenRead();
+            var fileStream2 = FileInfo2.OpenRead();
+
+            var md5Creator = MD5.Create();
+
+            var fileStream1Hash = md5Creator.ComputeHash(fileStream1);
+            var fileStream2Hash = md5Creator.ComputeHash(fileStream2);
+
+            for (var i = 0; i < fileStream1Hash.Length; i++)
+            {
+                if (fileStream1Hash[i] != fileStream2Hash[i])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         static void Main(string[] args)
