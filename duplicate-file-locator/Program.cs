@@ -68,15 +68,108 @@ namespace duplicate_file_locator
             string image2Hash = CreateHashOfImage(image2);
 
             return image1Hash == image2Hash;
-
-
-           
         }
 
+        static List<string> GetAllFilesInDirectory(string dir)
+        {
+            List<string> files = new List<string>();
+            if (Directory.Exists(dir))
+            {
+                List<string> subdirs = Directory.GetDirectories(dir).ToList<string>();
+                foreach (string subdir in subdirs)
+                {
+                    files.AddRange(GetAllFilesInDirectory(subdir));
+                }
+
+                // Add the files in the current directory
+                files.AddRange(Directory.GetFiles(dir).ToList<string>());
+            }
+            return files;
+        }
+
+        static DuplicatedImage FindDuplicateImage(string ogFile, List<string> files)
+        {
+            DuplicatedImage duplicatedImage = null;
+            foreach (string file in files)
+            {
+                if(CompareFiles(ogFile, file))
+                {
+                    if (duplicatedImage == null)
+                    {
+                        duplicatedImage = new DuplicatedImage(ogFile, file);
+                    }
+                    else
+                    {
+                        duplicatedImage.AddDuplicate(file);
+                    }
+                }
+            }
+            return duplicatedImage;
+        }
+
+        static void RemoveDuplicatesFromList(List<string> duplicates, List<String> files)
+        {
+            foreach (string duplicate in duplicates)
+            {
+                files.Remove(duplicate);
+            }
+        }
 
         static void Main(string[] args)
         {
+            List<DuplicatedImage> duplicatedImages = new List<DuplicatedImage>();
+            while (true)
+            {
+                Console.Write("Enter Folder to search or 'Q' to quit: ");
+                string input = Console.ReadLine();
+                if (input[0] == 'Q' || input[0] == 'q')
+                {
+                    return; // Quit's program
+                }
+                else
+                {
+                    if (Path.Exists(input))
+                    {
+                        List<string> files = GetAllFilesInDirectory(input);
+                        if (files.Count > 0)
+                        {
+                            //foreach (string file in files)
+                            //{
+                            //    Console.WriteLine(file);
+                            //}
 
+                            // Count -1 because the last file will have already been compared to all the others.
+                            for (int i = 0; i<files.Count-1; i++)
+                            {
+                                DuplicatedImage image = FindDuplicateImage(files[i], files.GetRange(i+1, files.Count-(i+1)));
+                                if (image != null)
+                                {
+                                    duplicatedImages.Add(image);
+                                    RemoveDuplicatesFromList(image.GetDuplicates(), files);
+                                }
+                            }
+
+                            foreach (DuplicatedImage image in duplicatedImages)
+                            {
+                                Console.WriteLine(image+"\n");
+                            }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("There are no files in this directory and it's subdirectories, please try again.\n");
+                        }
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("Path does not exist, please try again.\n");
+                    }
+                    
+                }
+
+
+            }
             string originalFile = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\P1040133.JPG";
             string diffNameFile = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\diff_name.JPG";
             string sameNameFile = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\same_name\\P1040133.JPG";
