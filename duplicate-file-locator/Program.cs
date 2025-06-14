@@ -45,6 +45,7 @@ namespace duplicate_file_locator
 
         static bool CompareFiles(string file1, string file2)
         {
+            Console.WriteLine(file2);
             Bitmap image1 = new Bitmap(file1);
             Bitmap image2 = new Bitmap(file2);
 
@@ -131,55 +132,80 @@ namespace duplicate_file_locator
         {
             while (true)
             {
-                Console.Write("Enter Folder to search or 'Q' to quit: ");
-                string input = Console.ReadLine();
-                if (input[0] == 'Q' || input[0] == 'q')
+                Console.WriteLine("(S)earch Folder,\n(D)isplay duplicates\n(C)lear duplicate file\n(Q)uit?");
+                string operation = Console.ReadLine();
                 {
-                    return; // Quit's program
-                }
-                else
-                {
-                    if (Path.Exists(input))
+                    if (operation[0] == 'S' || operation[0] == 's')
                     {
-                        List<string> files = GetAllFilesInDirectory(input);
-                        if (files.Count > 0)
+                        Console.Write("Enter Folder to search: ");
+                        string path = Console.ReadLine();
+                        if (Path.Exists(path))
                         {
-                            //foreach (string file in files)
-                            //{
-                            //    Console.WriteLine(file);
-                            //}
-
-                            // Count -1 because the last file will have already been compared to all the others.
-                            ConsoleUtility.WriteProgressBar(0);
-                            for (int i = 0; i<files.Count-1; i++)
+                            List<string> files = GetAllFilesInDirectory(path);
+                            if (files.Count > 0)
                             {
-                                int progress = (i * 100) / files.Count-1;
-                                ConsoleUtility.WriteProgressBar(progress, true);
+                                //foreach (string file in files)
+                                //{
+                                //    Console.WriteLine(file);
+                                //}
 
-                                DuplicatedImage image = FindDuplicateImage(files[i], files.GetRange(i+1, files.Count-(i+1)));
-                                if (image != null)
+                                // Count -1 because the last file will have already been compared to all the others.
+                                //ConsoleUtility.WriteProgressBar(0);
+                                for (int i = 0; i < files.Count - 1; i++)
                                 {
-                                    StoreDuplicatedImages(image);
-                                    RemoveCheckedFilesFromList(image, files);
-                                    i--; // Removing current index from list changes what is stored at next image. Without this a file would be skipped each time.
+                                    int progress = (i * 100) / files.Count - 1;
+                                    //ConsoleUtility.WriteProgressBar(progress, true);
+
+                                    DuplicatedImage image = FindDuplicateImage(files[i], files.GetRange(i + 1, files.Count - (i + 1)));
+                                    if (image != null)
+                                    {
+                                        StoreDuplicatedImages(image);
+                                        RemoveCheckedFilesFromList(image, files);
+                                        i--; // Removing current index from list changes what is stored at next image. Without this a file would be skipped each time.
+                                    }
                                 }
+                                //ConsoleUtility.WriteProgressBar(100, true);
+                                Console.WriteLine();
+
                             }
-                            ConsoleUtility.WriteProgressBar(100, true);
-                            Console.WriteLine();
+                            else
+                            {
+                                Console.WriteLine("There are no files in this directory and it's subdirectories, please try again.\n");
+                            }
 
                         }
                         else
                         {
-                            Console.WriteLine("There are no files in this directory and it's subdirectories, please try again.\n");
+                            Console.WriteLine("Path does not exist, please try again.\n");
                         }
+
                         
+                    }
+                    else if (operation[0] == 'D' || operation[0] == 'd')
+                    {
+                        string text = File.ReadAllText(DUPLICATED_IMAGES_TXT);
+                        Console.WriteLine(text);
+                    }
+                    else if (operation[0] == 'C' || operation[0] == 'c')
+                    {
+                        using (StreamWriter sw = File.CreateText(DUPLICATED_IMAGES_TXT))
+                        {
+                            sw.WriteLine("No duplicates found.");
+                        }
+                        Console.WriteLine("Duplicate file cleared.\n");
+                    }
+                    else if (operation[0] == 'S' || operation[0] == 's')
+                    {
+                        Console.WriteLine("Thank you, good bye!");
+                        return; // Quit's program
                     }
                     else
                     {
-                        Console.WriteLine("Path does not exist, please try again.\n");
+                        Console.WriteLine("Invalid input, please try again.\n");
                     }
-                    
                 }
+
+                
 
 
             }
