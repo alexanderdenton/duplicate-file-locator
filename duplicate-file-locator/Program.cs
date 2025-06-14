@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 
 using System.Security.Cryptography;
@@ -12,6 +13,8 @@ namespace duplicate_file_locator
     internal class Program
     {
         // Function below usies code from the MD5 Comparison.
+
+        const string DUPLICATED_IMAGES_TXT = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\duplicated-images.txt";
 
         static string ByteArrayToString(byte[] arrInput)
         {
@@ -107,17 +110,25 @@ namespace duplicate_file_locator
             return duplicatedImage;
         }
 
-        static void RemoveDuplicatesFromList(List<string> duplicates, List<String> files)
+        static void RemoveCheckedFilesFromList(DuplicatedImage image, List<String> files)
         {
-            foreach (string duplicate in duplicates)
+            files.Remove(image.GetOriginal());
+            foreach (string duplicate in image.GetDuplicates())
             {
                 files.Remove(duplicate);
             }
         }
 
+        static void StoreDuplicatedImages(DuplicatedImage duplicatedImage)
+        {
+            using (StreamWriter sw = File.AppendText(DUPLICATED_IMAGES_TXT))
+            {
+                sw.WriteLine(duplicatedImage);
+            }
+        }
+
         static void Main(string[] args)
         {
-            List<DuplicatedImage> duplicatedImages = new List<DuplicatedImage>();
             while (true)
             {
                 Console.Write("Enter Folder to search or 'Q' to quit: ");
@@ -139,20 +150,22 @@ namespace duplicate_file_locator
                             //}
 
                             // Count -1 because the last file will have already been compared to all the others.
+                            ConsoleUtility.WriteProgressBar(0);
                             for (int i = 0; i<files.Count-1; i++)
                             {
+                                int progress = (i * 100) / files.Count-1;
+                                ConsoleUtility.WriteProgressBar(progress, true);
+
                                 DuplicatedImage image = FindDuplicateImage(files[i], files.GetRange(i+1, files.Count-(i+1)));
                                 if (image != null)
                                 {
-                                    duplicatedImages.Add(image);
-                                    RemoveDuplicatesFromList(image.GetDuplicates(), files);
+                                    StoreDuplicatedImages(image);
+                                    RemoveCheckedFilesFromList(image, files);
+                                    i--; // Removing current index from list changes what is stored at next image. Without this a file would be skipped each time.
                                 }
                             }
-
-                            foreach (DuplicatedImage image in duplicatedImages)
-                            {
-                                Console.WriteLine(image+"\n");
-                            }
+                            ConsoleUtility.WriteProgressBar(100, true);
+                            Console.WriteLine();
 
                         }
                         else

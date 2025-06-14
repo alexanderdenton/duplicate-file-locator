@@ -33,6 +33,11 @@ namespace duplicate_file_locator
                 _duplicateImages.Add(path);
         }
 
+        public string GetOriginal()
+        {
+            return _path;
+        }
+
         public List<string> GetDuplicates()
         {
             return _duplicateImages;
