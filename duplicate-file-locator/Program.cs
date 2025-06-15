@@ -27,52 +27,62 @@ namespace duplicate_file_locator
             return sOutput.ToString();
         }
 
-        static string CreateHashOfImage(Bitmap img)
+        static string CreateHashOfImage(string path)
         {
-            byte[] tmpSource;
-            byte[] tmpHash;
-
-            //Create a byte array from source data.
-            MemoryStream stream = new MemoryStream();
-            img.Save(stream, System.Drawing.Imaging.ImageFormat.Bmp);
-            tmpSource = stream.ToArray();
-
-            //Compute hash based on source data.
-            tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
-
-            return ByteArrayToString(tmpHash);
-        }
-
-        static bool CompareFiles(string file1, string file2)
-        {
-            Console.WriteLine(file2);
-            Bitmap image1 = new Bitmap(file1);
-            Bitmap image2 = new Bitmap(file2);
-
-            if (image1.Width != image2.Width || image1.Height != image2.Height)
+            try
             {
-                return false;
+                Bitmap img = new Bitmap(path);
+
+                byte[] tmpSource;
+                byte[] tmpHash;
+
+                //Create a byte array from source data.
+                MemoryStream stream = new MemoryStream();
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Bmp);
+                tmpSource = stream.ToArray();
+
+                //Compute hash based on source data.
+                tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
+
+                return ByteArrayToString(tmpHash);
             }
-
-            //for (int i=0; i < image1.Width; i++)
-            //{
-            //    for (int j = 0; j < image1.Height; j++)
-            //    {
-            //        var img1_ref = image1.GetPixel(i, j);
-            //        var img2_ref = image2.GetPixel(i, j);
-
-            //        if (img1_ref != img2_ref)
-            //        {
-            //            return false;
-            //        }
-            //    }
-            //}
-
-            string image1Hash = CreateHashOfImage(image1);
-            string image2Hash = CreateHashOfImage(image2);
-
-            return image1Hash == image2Hash;
+            catch
+            {
+                return string.Empty;
+            }
+            
         }
+
+        //static bool CompareFiles(string file1, string file2)
+        //{
+        //    Console.WriteLine(file2);
+        //    Bitmap image1 = new Bitmap(file1);
+        //    Bitmap image2 = new Bitmap(file2);
+
+        //    if (image1.Width != image2.Width || image1.Height != image2.Height)
+        //    {
+        //        return false;
+        //    }
+
+        //    //for (int i=0; i < image1.Width; i++)
+        //    //{
+        //    //    for (int j = 0; j < image1.Height; j++)
+        //    //    {
+        //    //        var img1_ref = image1.GetPixel(i, j);
+        //    //        var img2_ref = image2.GetPixel(i, j);
+
+        //    //        if (img1_ref != img2_ref)
+        //    //        {
+        //    //            return false;
+        //    //        }
+        //    //    }
+        //    //}
+
+        //    string image1Hash = CreateHashOfImage(image1);
+        //    string image2Hash = CreateHashOfImage(image2);
+
+        //    return image1Hash == image2Hash;
+        //}
 
         static List<string> GetAllFilesInDirectory(string dir)
         {
@@ -91,42 +101,35 @@ namespace duplicate_file_locator
             return files;
         }
 
-        static DuplicatedImage FindDuplicateImage(string ogFile, List<string> files)
+        //static DuplicatedImage FindDuplicateImage(string ogFile, List<string> files)
+        //{
+        //    DuplicatedImage duplicatedImage = null;
+        //    foreach (string file in files)
+        //    {
+        //        if(CompareFiles(ogFile, file))
+        //        {
+        //            if (duplicatedImage == null)
+        //            {
+        //                duplicatedImage = new DuplicatedImage(ogFile, file);
+        //            }
+        //            else
+        //            {
+        //                duplicatedImage.AddDuplicate(file);
+        //            }
+        //        }
+        //    }
+        //    return duplicatedImage;
+        //}
+
+        static void RemoveCheckedFileFromList(string file, List<String> files)
         {
-            DuplicatedImage duplicatedImage = null;
-            foreach (string file in files)
-            {
-                if(CompareFiles(ogFile, file))
-                {
-                    if (duplicatedImage == null)
-                    {
-                        duplicatedImage = new DuplicatedImage(ogFile, file);
-                    }
-                    else
-                    {
-                        duplicatedImage.AddDuplicate(file);
-                    }
-                }
-            }
-            return duplicatedImage;
+            files.Remove(file);
         }
 
-        static void RemoveCheckedFilesFromList(DuplicatedImage image, List<String> files)
-        {
-            files.Remove(image.GetOriginal());
-            foreach (string duplicate in image.GetDuplicates())
-            {
-                files.Remove(duplicate);
-            }
-        }
-
-        static void StoreDuplicatedImages(DuplicatedImage duplicatedImage)
-        {
-            using (StreamWriter sw = File.AppendText(DUPLICATED_IMAGES_TXT))
-            {
-                sw.WriteLine(duplicatedImage);
-            }
-        }
+        //static void StoreDuplicatedImages(DuplicatedImage duplicatedImage)
+        //{
+            
+        //}
 
         static void Main(string[] args)
         {
@@ -138,32 +141,42 @@ namespace duplicate_file_locator
                     if (operation[0] == 'S' || operation[0] == 's')
                     {
                         Console.Write("Enter Folder to search: ");
-                        string path = Console.ReadLine();
-                        if (Path.Exists(path))
+                        string dirPath = Console.ReadLine();
+                        if (Path.Exists(dirPath))
                         {
-                            List<string> files = GetAllFilesInDirectory(path);
-                            if (files.Count > 0)
+                            List<string> filePaths = GetAllFilesInDirectory(dirPath);
+                            if (filePaths.Count > 0)
                             {
-                                //foreach (string file in files)
-                                //{
-                                //    Console.WriteLine(file);
-                                //}
-
-                                // Count -1 because the last file will have already been compared to all the others.
-                                //ConsoleUtility.WriteProgressBar(0);
-                                for (int i = 0; i < files.Count - 1; i++)
+                                // Create a list of every hash found
+                                List<string> hashesFound = new List<string>();
+                                foreach (string filePath in filePaths)
                                 {
-                                    int progress = (i * 100) / files.Count - 1;
+                                    string hash = CreateHashOfImage(filePath);
+                                    if (hash != string.Empty)
+                                    {
+                                        if (hashesFound.Contains(hash))
+                                        {
+                                            DuplicatedImageFinder.AddHash(hash, filePath);
+                                            RemoveCheckedFileFromList(filePath, filePaths);
+                                        }
+                                        else
+                                        {
+                                            hashesFound.Add(hash);
+                                        }
+                                    }
+                                    //int progress = (i * 100) / files.Count - 1;
                                     //ConsoleUtility.WriteProgressBar(progress, true);
 
-                                    DuplicatedImage image = FindDuplicateImage(files[i], files.GetRange(i + 1, files.Count - (i + 1)));
-                                    if (image != null)
-                                    {
-                                        StoreDuplicatedImages(image);
-                                        RemoveCheckedFilesFromList(image, files);
-                                        i--; // Removing current index from list changes what is stored at next image. Without this a file would be skipped each time.
-                                    }
+                                    //DuplicatedImage image = FindDuplicateImage(files[i], files.GetRange(i + 1, files.Count - (i + 1)));
+                                    //if (image != null)
+                                    //{
+                                    //    StoreDuplicatedImages(image);
+                                        
+                                    //}
                                 }
+
+                                DuplicatedImageFinder.SaveData(DUPLICATED_IMAGES_TXT);
+
                                 //ConsoleUtility.WriteProgressBar(100, true);
                                 Console.WriteLine();
 
@@ -209,22 +222,22 @@ namespace duplicate_file_locator
 
 
             }
-            string originalFile = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\P1040133.JPG";
-            string diffNameFile = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\diff_name.JPG";
-            string sameNameFile = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\same_name\\P1040133.JPG";
-            string sameNameDiffDateFile = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\same_name_diff_date\\P1040133.JPG";
+            //string originalFile = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\P1040133.JPG";
+            //string diffNameFile = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\diff_name.JPG";
+            //string sameNameFile = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\same_name\\P1040133.JPG";
+            //string sameNameDiffDateFile = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\same_name_diff_date\\P1040133.JPG";
 
-            Console.WriteLine("Comparing \n{0} \nwith \n{1}", originalFile, originalFile);
-            Console.WriteLine("Result: {0}\n", CompareFiles(originalFile, originalFile));
+            //Console.WriteLine("Comparing \n{0} \nwith \n{1}", originalFile, originalFile);
+            //Console.WriteLine("Result: {0}\n", CompareFiles(originalFile, originalFile));
 
-            Console.WriteLine("Comparing \n{0} \nwith \n{1}", originalFile, diffNameFile);
-            Console.WriteLine("Result: {0}\n", CompareFiles(originalFile, diffNameFile));
+            //Console.WriteLine("Comparing \n{0} \nwith \n{1}", originalFile, diffNameFile);
+            //Console.WriteLine("Result: {0}\n", CompareFiles(originalFile, diffNameFile));
 
-            Console.WriteLine("Comparing \n{0} \nwith \n{1}", originalFile, sameNameFile);
-            Console.WriteLine("Result: {0}\n", CompareFiles(originalFile, sameNameFile));
+            //Console.WriteLine("Comparing \n{0} \nwith \n{1}", originalFile, sameNameFile);
+            //Console.WriteLine("Result: {0}\n", CompareFiles(originalFile, sameNameFile));
 
-            Console.WriteLine("Comparing \n{0} \nwith \n{1}", originalFile, sameNameDiffDateFile);
-            Console.WriteLine("Result: {0}\n", CompareFiles(originalFile, sameNameDiffDateFile));
+            //Console.WriteLine("Comparing \n{0} \nwith \n{1}", originalFile, sameNameDiffDateFile);
+            //Console.WriteLine("Result: {0}\n", CompareFiles(originalFile, sameNameDiffDateFile));
 
 
         }
