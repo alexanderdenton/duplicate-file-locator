@@ -8,23 +8,30 @@ namespace duplicate_file_locator
 {
     public class DuplicatedImage
     {
-        private readonly string _path;
+        private string _hash;
+        private string _originalPath;
         private List<string> _duplicateImages;
 
         public DuplicatedImage() 
         {
-            _path = new string("");
+            _hash = string.Empty;
+            _originalPath = string.Empty;
             _duplicateImages = new List<string>();
         }
 
-        public DuplicatedImage(string path) : this()
+        public DuplicatedImage(string hash) : this()
         {
-            _path = path;
+            _hash = hash;
         }
 
-        public DuplicatedImage(string path, string duplicatePath) : this(path)
+        public DuplicatedImage(string hash, string duplicatePath) : this(hash)
         {
             _duplicateImages.Add(duplicatePath);
+        }
+
+        public void AddOriginalPath(string path)
+        {
+            _originalPath = path;
         }
 
         public void AddDuplicate(string path)
@@ -33,9 +40,14 @@ namespace duplicate_file_locator
                 _duplicateImages.Add(path);
         }
 
-        public string GetOriginal()
+        public string GetHash() 
+        { 
+            return _hash; 
+        }
+
+        public string GetOriginalPath()
         {
-            return _path;
+            return _originalPath;
         }
 
         public List<string> GetDuplicates()
@@ -45,7 +57,7 @@ namespace duplicate_file_locator
 
         public override string ToString()
         {
-            string output = "Original : " + _path + "\nDuplicates : \n";
+            string output = "Hash : " + _hash + "\nOriginal : " + _originalPath + "\nDuplicates : \n";
             foreach (string image in _duplicateImages)
             {
                 output += "\t\t" + image + "\n";

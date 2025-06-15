@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace duplicate_file_locator
 {
+    // Ref: https://www.codeproject.com/Tips/5255878/A-Console-Progress-Bar-in-Csharp
     public static class ConsoleUtility
     {
         const char _block = '■';
