@@ -149,15 +149,16 @@ namespace duplicate_file_locator
                             {
                                 // Create a list of every hash found
                                 List<string> hashesFound = new List<string>();
-                                foreach (string filePath in filePaths)
+                                for (int i = 0; i<filePaths.Count; i++)
                                 {
-                                    string hash = CreateHashOfImage(filePath);
+                                    string hash = CreateHashOfImage(filePaths[i]);
                                     if (hash != string.Empty)
                                     {
                                         if (hashesFound.Contains(hash))
                                         {
-                                            DuplicatedImageFinder.AddHash(hash, filePath);
-                                            RemoveCheckedFileFromList(filePath, filePaths);
+                                            DuplicatedImageFinder.AddHash(hash, filePaths[i]);
+                                            RemoveCheckedFileFromList(filePaths[i], filePaths);
+                                            i--;
                                         }
                                         else
                                         {
@@ -207,7 +208,7 @@ namespace duplicate_file_locator
                         }
                         Console.WriteLine("Duplicate file cleared.\n");
                     }
-                    else if (operation[0] == 'S' || operation[0] == 's')
+                    else if (operation[0] == 'Q' || operation[0] == 'q')
                     {
                         Console.WriteLine("Thank you, good bye!");
                         return; // Quit's program
