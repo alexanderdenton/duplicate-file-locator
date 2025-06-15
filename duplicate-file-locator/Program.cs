@@ -29,6 +29,8 @@ namespace duplicate_file_locator
 
         static string CreateHashOfImage(string path)
         {
+            //Ref: https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/csharp/language-compilers/compute-hash-values
+            //Ref: https://www.sitepoint.com/community/t/bitmap-to-byte-array-in-c/1877
             try
             {
                 Bitmap img = new Bitmap(path);
