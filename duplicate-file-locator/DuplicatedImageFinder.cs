@@ -12,12 +12,12 @@ namespace duplicate_file_locator
 
         public static void AddHash(string hash, string pathToDuplicate)
         {
-            try
+            if (_duplicatedImages.Any(img => img.GetHash() == hash))
             {
                 // Get the DuplicatedImage object with the same hash value and add the path to the duplicate
                 _duplicatedImages.FirstOrDefault(img => img.GetHash() == hash).AddDuplicate(pathToDuplicate);
             }
-            catch
+            else
             {
                 // Create a new object with the hash and path to the duplicate
                 _duplicatedImages.Add(new DuplicatedImage(hash, pathToDuplicate));
