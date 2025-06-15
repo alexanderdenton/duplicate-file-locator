@@ -183,7 +183,7 @@ namespace duplicate_file_locator
                                 }
 
                                 ConsoleUtility.WriteProgressBar(100, true);
-                                Console.WriteLine("Total Images checked : {0}\nCollating Data now...", imagesHashed);
+                                Console.WriteLine("\nTotal Images checked : {0}\nCollating Data now...", imagesHashed);
 
                                 DuplicatedImageFinder.FindOriginals(filePaths, hashesFound);
 
