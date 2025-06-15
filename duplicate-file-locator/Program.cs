@@ -145,13 +145,19 @@ namespace duplicate_file_locator
                         if (Path.Exists(dirPath))
                         {
                             List<string> filePaths = GetAllFilesInDirectory(dirPath);
-                            if (filePaths.Count > 0)
+                            int totalImages = filePaths.Count;
+                            if (totalImages > 0)
                             {
+                                int imagesHashed = 0;
                                 // Create a list of every hash found
                                 List<string> hashesFound = new List<string>();
                                 for (int i = 0; i<filePaths.Count; i++)
                                 {
+                                    int progress = (imagesHashed*100) / totalImages;
+                                    ConsoleUtility.WriteProgressBar(progress, true);
+
                                     string hash = CreateHashOfImage(filePaths[i]);
+                                    imagesHashed++;
                                     if (hash != string.Empty)
                                     {
                                         if (hashesFound.Contains(hash))
@@ -175,6 +181,9 @@ namespace duplicate_file_locator
                                         
                                     //}
                                 }
+
+                                ConsoleUtility.WriteProgressBar(100, true);
+                                Console.WriteLine("Total Images checked : {0}\nCollating Data now...", imagesHashed);
 
                                 DuplicatedImageFinder.FindOriginals(filePaths, hashesFound);
 
