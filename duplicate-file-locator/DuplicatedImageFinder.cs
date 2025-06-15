@@ -34,5 +34,22 @@ namespace duplicate_file_locator
                 }
             }
         }
+
+        public static void FindOriginals(List<string> filePaths, List<string> hashesFound)
+        {
+            if (filePaths.Count == hashesFound.Count)
+            {
+                foreach(var img in _duplicatedImages)
+                {
+                    int i = hashesFound.IndexOf(img.GetHash());
+                    string ogPath = filePaths[i];
+                    img.AddOriginalPath(ogPath);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Note: Can't find original files as filePaths and hashesFound are different in length");
+            }
+        }
     }
 }

@@ -176,6 +176,8 @@ namespace duplicate_file_locator
                                     //}
                                 }
 
+                                DuplicatedImageFinder.FindOriginals(filePaths, hashesFound);
+
                                 DuplicatedImageFinder.SaveData(DUPLICATED_IMAGES_TXT);
 
                                 //ConsoleUtility.WriteProgressBar(100, true);
