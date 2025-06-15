@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("duplicate-file-locator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d3257f108a039dac04238e0c1eafc04595afb978")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbfb327edd9291ece43e0e1e52c9075bcf7baa63")]
 [assembly: System.Reflection.AssemblyProductAttribute("duplicate-file-locator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("duplicate-file-locator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
