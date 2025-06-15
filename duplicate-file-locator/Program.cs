@@ -137,7 +137,7 @@ namespace duplicate_file_locator
         {
             while (true)
             {
-                Console.WriteLine("(S)earch Folder\n(D)isplay Duplicate Files\n(C)lear Duplicate File Log\n(H)ash Individual File\n(Q)uit?");
+                Console.WriteLine("(S)earch Folder\n(D)isplay Duplicate Files\n(C)lear Duplicate File Log\n(V)erify Duplicated Files\n(H)ash Individual File\n(Q)uit?");
                 string operation = Console.ReadLine();
                 {
                     if (operation[0] == 'S' || operation[0] == 's')
@@ -221,6 +221,10 @@ namespace duplicate_file_locator
                             sw.WriteLine("No duplicates found.");
                         }
                         Console.WriteLine("Duplicate file cleared.\n");
+                    }
+                    else if (operation[0] == 'V' || operation[0] == 'v')
+                    {
+                        Console.WriteLine("Feature not implemented yet...\n");
                     }
                     else if (operation[0] == 'H' || operation[0] == 'h')
                     {
