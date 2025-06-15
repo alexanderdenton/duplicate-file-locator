@@ -199,6 +199,7 @@ namespace duplicate_file_locator
                     }
                     else if (operation[0] == 'D' || operation[0] == 'd')
                     {
+                        Console.WriteLine();
                         string text = File.ReadAllText(DUPLICATED_IMAGES_TXT);
                         Console.WriteLine(text);
                     }

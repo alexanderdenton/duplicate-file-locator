@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace duplicate_file_locator
 {
@@ -26,6 +27,11 @@ namespace duplicate_file_locator
 
         public static void SaveData(string saveFilePath)
         {
+            if(File.ReadLines(saveFilePath).First() == "No duplicates found.")
+            {
+                File.WriteAllText(saveFilePath, "");
+            }
+
             using (StreamWriter sw = File.AppendText(saveFilePath))
             {
                 foreach (var img in _duplicatedImages)
