@@ -55,9 +55,14 @@ namespace duplicate_file_locator
             }
         }
 
-        public static void LoadData(string saveFilePath)
+        public static string DisplayData()
         {
-            // Placeholder for future development
+            string displayOutput = String.Empty;
+            foreach (var img in _duplicatedImages)
+        {
+                displayOutput += img;
+            }
+            return displayOutput;
         }
 
         public static void FindOriginals(List<string> filePaths, List<string> hashesFound)
