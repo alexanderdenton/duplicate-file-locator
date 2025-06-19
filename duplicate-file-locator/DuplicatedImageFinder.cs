@@ -16,10 +16,10 @@ namespace duplicate_file_locator
 
         public static void AddHash(string hash, string pathToDuplicate)
         {
-            if (_duplicatedImages.Any(img => img.GetHash() == hash))
+            if (_duplicatedImages.Any(img => img.Hash == hash))
             {
                 // Get the DuplicatedImage object with the same hash value and add the path to the duplicate
-                _duplicatedImages.FirstOrDefault(img => img.GetHash() == hash).AddDuplicate(pathToDuplicate);
+                _duplicatedImages.FirstOrDefault(img => img.Hash == hash).AddDuplicate(pathToDuplicate);
             }
             else
             {
@@ -71,7 +71,7 @@ namespace duplicate_file_locator
             {
                 foreach(var img in _duplicatedImages)
                 {
-                    int i = hashesFound.IndexOf(img.GetHash());
+                    int i = hashesFound.IndexOf(img.Hash);
                     string ogPath = filePaths[i];
                     img.AddOriginalPath(ogPath);
                 }
@@ -89,9 +89,9 @@ namespace duplicate_file_locator
 
             for (int i = 0; i < _duplicatedImages.Count; i++)
             {
-                string ogPath = _duplicatedImages[i].GetOriginalPath();
+                string ogPath = _duplicatedImages[i].OriginalPath;
                 Bitmap img1 = new Bitmap(ogPath);
-                foreach (var duplicatedPath in _duplicatedImages[i].GetDuplicates())
+                foreach (var duplicatedPath in _duplicatedImages[i].DuplicateImages)
                 {
                     Bitmap img2 = new Bitmap(duplicatedPath);
 
@@ -105,7 +105,7 @@ namespace duplicate_file_locator
                 // If there is just one added, then no possible duplicates
                 if (NotDuplicatePaths.Count > 1)
                 {
-                    DuplicatedImage temp = new DuplicatedImage(_duplicatedImages[i].GetHash());
+                    DuplicatedImage temp = new DuplicatedImage(_duplicatedImages[i].Hash);
                     temp.AddOriginalPath(NotDuplicatePaths[0]);
                     NotDuplicatePaths.RemoveAt(0);
                     foreach (var path in NotDuplicatePaths)
