@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace duplicate_file_locator
@@ -11,6 +12,21 @@ namespace duplicate_file_locator
         private string _hash;
         private string _originalPath;
         private List<string> _duplicateImages;
+
+        public string Hash
+        {
+            get { return _hash; }
+        }
+
+        public string OriginalPath
+        {
+            get { return _originalPath; }
+        }
+
+        public List<string> DuplicateImages
+        {
+            get { return _duplicateImages; }
+        }
 
         public DuplicatedImage() 
         {
@@ -40,20 +56,6 @@ namespace duplicate_file_locator
                 _duplicateImages.Add(path);
         }
 
-        public string GetHash() 
-        { 
-            return _hash; 
-        }
-
-        public string GetOriginalPath()
-        {
-            return _originalPath;
-        }
-
-        public List<string> GetDuplicates()
-        {
-            return _duplicateImages;
-        }
 
         public override string ToString()
         {
