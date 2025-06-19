@@ -1,0 +1,25 @@
+[
+  {
+    "Hash": "BC1173AE1C119128CCCA7190BDD16FAF",
+    "OriginalPath": "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\og\\P1040133 - Copy.JPG",
+    "DuplicateImages": [
+      "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\og\\P1040133.JPG",
+      "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\same_name\\P1040133.JPG",
+      "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\same_name_diff_date\\P1040133.JPG"
+    ]
+  },
+  {
+    "Hash": "38357FEEAA7392183DD16A34FE681100",
+    "OriginalPath": "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\og\\20240809_152410.jpg",
+    "DuplicateImages": [
+      "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\same_name\\20240809_152410.jpg"
+    ]
+  },
+  {
+    "Hash": "769F0CACE7B957755C9B770CAE24D88F",
+    "OriginalPath": "C:\\Users\\Alexa\\OneDrive\\Denton Family Photos\\2004\\2004-07\\ALEX 03.07.04 017.jpg",
+    "DuplicateImages": [
+      "C:\\Users\\Alexa\\OneDrive\\Denton Family Photos\\2004\\2004-07\\ALEX 03.07.04 026.jpg"
+    ]
+  }
+]
