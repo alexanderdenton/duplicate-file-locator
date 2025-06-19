@@ -211,7 +211,7 @@ namespace duplicate_file_locator
                     }
                     else if (operation[0] == 'D' || operation[0] == 'd')
                     {
-                        Console.WriteLine("\n{0}", DuplicatedImageFinder.DisplayData());
+                        Console.WriteLine("\n{0}\n", DuplicatedImageFinder.DisplayData());
                     }
                     else if (operation[0] == 'C' || operation[0] == 'c')
                     {

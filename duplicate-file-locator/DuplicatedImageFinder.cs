@@ -62,6 +62,12 @@ namespace duplicate_file_locator
             {
                 displayOutput += img;
             }
+
+            if (displayOutput == String.Empty)
+            {
+                displayOutput = "No duplicates found.";
+            }
+
             return displayOutput;
         }
 
