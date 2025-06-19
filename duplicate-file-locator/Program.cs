@@ -136,6 +136,9 @@ namespace duplicate_file_locator
 
         static void Main(string[] args)
         {
+
+            DuplicatedImageFinder.LoadData(DUPLICATED_IMAGES_JSON);
+
             while (true)
             {
                 Console.WriteLine("(S)earch Folder\n(D)isplay Duplicate Files\n(C)lear Duplicate File Log\n(V)erify Duplicated Files\n(H)ash Individual File\n(Q)uit?");

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+
+using Newtonsoft.Json;
 
 namespace duplicate_file_locator
 {
@@ -13,16 +14,21 @@ namespace duplicate_file_locator
         private string _originalPath;
         private List<string> _duplicateImages;
 
+        [JsonProperty("Hash")]
         public string Hash
         {
             get { return _hash; }
+            private set { _hash = value; }
         }
 
+        [JsonProperty("OriginalPath")]
         public string OriginalPath
         {
             get { return _originalPath; }
+            set { _originalPath = value; }
         }
 
+        [JsonProperty("DuplicateImages")]
         public List<string> DuplicateImages
         {
             get { return _duplicateImages; }
@@ -42,12 +48,14 @@ namespace duplicate_file_locator
 
         public DuplicatedImage(string hash, string duplicatePath) : this(hash)
         {
-            _duplicateImages.Add(duplicatePath);
+            DuplicateImages.Add(duplicatePath);
         }
 
-        public void AddOriginalPath(string path)
+        [JsonConstructor]
+        public DuplicatedImage(string hash, string originalPath, List<string> duplicateImages) : this(hash)
         {
-            _originalPath = path;
+            _originalPath = originalPath;
+            _duplicateImages = duplicateImages;
         }
 
         public void AddDuplicate(string path)
@@ -55,7 +63,6 @@ namespace duplicate_file_locator
             if (!_duplicateImages.Contains(path))
                 _duplicateImages.Add(path);
         }
-
 
         public override string ToString()
         {

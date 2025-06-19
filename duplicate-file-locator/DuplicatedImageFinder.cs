@@ -34,9 +34,11 @@ namespace duplicate_file_locator
             File.WriteAllText(saveDataFilePath, json);
         }
 
-        public static void LoadData(string saveFilePath)
+        public static void LoadData(string saveDataFilePath)
         {
-            // Placeholder for future development
+            string json = File.ReadAllText(saveDataFilePath);
+            _duplicatedImages = JsonConvert.DeserializeObject<List<DuplicatedImage>>(json);
+
         }
 
         public static void OutputData(string outputFilePath)
@@ -79,7 +81,7 @@ namespace duplicate_file_locator
                 {
                     int i = hashesFound.IndexOf(img.Hash);
                     string ogPath = filePaths[i];
-                    img.AddOriginalPath(ogPath);
+                    img.OriginalPath = ogPath;
                 }
             }
             else
@@ -112,7 +114,7 @@ namespace duplicate_file_locator
                 if (NotDuplicatePaths.Count > 1)
                 {
                     DuplicatedImage temp = new DuplicatedImage(_duplicatedImages[i].Hash);
-                    temp.AddOriginalPath(NotDuplicatePaths[0]);
+                    temp.OriginalPath = NotDuplicatePaths[0];
                     NotDuplicatePaths.RemoveAt(0);
                     foreach (var path in NotDuplicatePaths)
                     {
