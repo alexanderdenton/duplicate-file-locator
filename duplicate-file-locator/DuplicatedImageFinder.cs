@@ -59,7 +59,7 @@ namespace duplicate_file_locator
         {
             string displayOutput = String.Empty;
             foreach (var img in _duplicatedImages)
-        {
+            {
                 displayOutput += img;
             }
             return displayOutput;
