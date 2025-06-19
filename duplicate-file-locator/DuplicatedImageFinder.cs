@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
 using System.Drawing;
+using Newtonsoft.Json;
 
 namespace duplicate_file_locator
 {
@@ -27,14 +28,25 @@ namespace duplicate_file_locator
             }
         }
 
-        public static void SaveData(string saveFilePath)
+        public static void SaveData(string saveDataFilePath)
         {
-            if(File.ReadLines(saveFilePath).First() == "No duplicates found.")
+            string json = JsonConvert.SerializeObject(_duplicatedImages);
+            File.WriteAllText(saveDataFilePath, json);
+        }
+
+        public static void LoadData(string saveFilePath)
+        {
+            // Placeholder for future development
+        }
+
+        public static void OutputData(string outputFilePath)
+        {
+            if(File.ReadLines(outputFilePath).First() == "No duplicates found.")
             {
-                File.WriteAllText(saveFilePath, "");
+                File.WriteAllText(outputFilePath, "");
             }
 
-            using (StreamWriter sw = File.AppendText(saveFilePath))
+            using (StreamWriter sw = File.AppendText(outputFilePath))
             {
                 foreach (var img in _duplicatedImages)
                 {
