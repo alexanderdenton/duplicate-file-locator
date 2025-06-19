@@ -141,7 +141,7 @@ namespace duplicate_file_locator
 
             while (true)
             {
-                Console.WriteLine("(S)earch Folder\n(D)isplay Duplicate Files\n(C)lear Duplicate File Log\n(V)erify Duplicated Files\n(H)ash Individual File\n(Q)uit?");
+                Console.WriteLine("(S)earch Folder\n(D)isplay Duplicate Files\n(C)lear Duplicate File Log\n(E)xport Duplicate Log\n(V)erify Duplicated Files\n(H)ash Individual File\n(Q)uit?");
                 string operation = Console.ReadLine();
                 {
                     if (operation[0] == 'S' || operation[0] == 's')
