@@ -224,7 +224,9 @@ namespace duplicate_file_locator
                     }
                     else if (operation[0] == 'V' || operation[0] == 'v')
                     {
-                        Console.WriteLine("Feature not implemented yet...\n");
+                        Console.WriteLine("Verify duplicate images found...\n");
+                        DuplicatedImageFinder.VerifyDuplicates();
+                        DuplicatedImageFinder.SaveData(DUPLICATED_IMAGES_TXT);
                     }
                     else if (operation[0] == 'H' || operation[0] == 'h')
                     {
