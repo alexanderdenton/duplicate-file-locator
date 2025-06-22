@@ -4,10 +4,16 @@ namespace DuplicateFileLocatorLibrary.Classes
 {
     public class DuplicateFileLocator : IDuplicateFileLocator
     {
+        #region Constructor
+
         public DuplicateFileLocator()
         {
             
         }
+
+        #endregion
+
+        #region Public Methods
 
         public void FindDuplicateFiles(string pathToFolder)
         {
@@ -43,5 +49,7 @@ namespace DuplicateFileLocatorLibrary.Classes
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

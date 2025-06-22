@@ -8,6 +8,8 @@ namespace DuplicateFileLocatorLibrary.Interfaces
 {
     public interface IDuplicateFileLocator
     {
+        #region Methods
+
         /// <summary>
         /// Method searches recursively to find duplicated files.
         /// </summary>
@@ -52,5 +54,7 @@ namespace DuplicateFileLocatorLibrary.Interfaces
         /// Path to file to be hashed.
         /// </param>
         void HashIndividualFile(string pathToFile);
+
+        #endregion
     }
 }
