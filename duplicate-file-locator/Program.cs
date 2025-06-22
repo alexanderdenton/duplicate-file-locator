@@ -17,6 +17,8 @@ namespace duplicate_file_locator
         const string DEFAULT_TXT_OUTPUT_PATH = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\duplicated-images.txt";
         const string DUPLICATED_IMAGES_JSON = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\duplicated-images.json";
 
+        const string TEST_JSON = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test.json";
+
         static string ByteArrayToString(byte[] arrInput)
         {
             int i;
@@ -219,11 +221,19 @@ namespace duplicate_file_locator
                     else if (operation[0] == 'C' || operation[0] == 'c')
                     {
                         // Needs to be fixed
-                        //using (StreamWriter sw = File.CreateText(DUPLICATED_IMAGES_TXT))
-                        //{
-                        //    sw.WriteLine("No duplicates found.");
-                        //}
-                        //Console.WriteLine("Duplicate file cleared.\n");
+                        using (StreamWriter sw = File.CreateText(TEST_JSON))
+                        {
+                            sw.WriteLine();
+                        }
+                        Console.WriteLine("Duplicate file cleared.\n");
+                    }
+                    else if (operation[0] == 'E' || operation[0] == 'e')
+                    {
+                        using (StreamWriter sw = File.CreateText(DEFAULT_TXT_OUTPUT_PATH))
+                        {
+                            sw.WriteLine(DuplicatedImageFinder.DisplayData());
+                        }
+                        Console.WriteLine("Duplicate file exported.\n");
                     }
                     else if (operation[0] == 'V' || operation[0] == 'v')
                     {
