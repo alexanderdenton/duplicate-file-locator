@@ -14,7 +14,10 @@ namespace duplicate_file_locator
     {
         // Function below usies code from the MD5 Comparison.
 
-        const string DUPLICATED_IMAGES_TXT = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\duplicated-images.txt";
+        const string DEFAULT_TXT_OUTPUT_PATH = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\duplicated-images.txt";
+        const string DUPLICATED_IMAGES_JSON = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\duplicated-images.json";
+
+        const string TEST_JSON = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test.json";
 
         static string ByteArrayToString(byte[] arrInput)
         {
@@ -135,9 +138,12 @@ namespace duplicate_file_locator
 
         static void Main(string[] args)
         {
+
+            DuplicatedImageFinder.LoadData(DUPLICATED_IMAGES_JSON);
+
             while (true)
             {
-                Console.WriteLine("(S)earch Folder\n(D)isplay Duplicate Files\n(C)lear Duplicate File Log\n(V)erify Duplicated Files\n(H)ash Individual File\n(Q)uit?");
+                Console.WriteLine("(S)earch Folder\n(D)isplay Duplicate Files\n(C)lear Duplicate File Log\n(E)xport Duplicate Log\n(V)erify Duplicated Files\n(H)ash Individual File\n(Q)uit?");
                 string operation = Console.ReadLine();
                 {
                     if (operation[0] == 'S' || operation[0] == 's')
@@ -189,7 +195,7 @@ namespace duplicate_file_locator
 
                                 DuplicatedImageFinder.FindOriginals(filePaths, hashesFound);
 
-                                DuplicatedImageFinder.SaveData(DUPLICATED_IMAGES_TXT);
+                                DuplicatedImageFinder.SaveData(DUPLICATED_IMAGES_JSON);
 
                                 //ConsoleUtility.WriteProgressBar(100, true);
                                 Console.WriteLine();
@@ -210,23 +216,30 @@ namespace duplicate_file_locator
                     }
                     else if (operation[0] == 'D' || operation[0] == 'd')
                     {
-                        Console.WriteLine();
-                        string text = File.ReadAllText(DUPLICATED_IMAGES_TXT);
-                        Console.WriteLine(text);
+                        Console.WriteLine("\n{0}\n", DuplicatedImageFinder.DisplayData());
                     }
                     else if (operation[0] == 'C' || operation[0] == 'c')
                     {
-                        using (StreamWriter sw = File.CreateText(DUPLICATED_IMAGES_TXT))
+                        // Needs to be fixed
+                        using (StreamWriter sw = File.CreateText(TEST_JSON))
                         {
-                            sw.WriteLine("No duplicates found.");
+                            sw.WriteLine();
                         }
                         Console.WriteLine("Duplicate file cleared.\n");
+                    }
+                    else if (operation[0] == 'E' || operation[0] == 'e')
+                    {
+                        using (StreamWriter sw = File.CreateText(DEFAULT_TXT_OUTPUT_PATH))
+                        {
+                            sw.WriteLine(DuplicatedImageFinder.DisplayData());
+                        }
+                        Console.WriteLine("Duplicate file exported.\n");
                     }
                     else if (operation[0] == 'V' || operation[0] == 'v')
                     {
                         Console.WriteLine("Verify duplicate images found...\n");
                         DuplicatedImageFinder.VerifyDuplicates();
-                        DuplicatedImageFinder.SaveData(DUPLICATED_IMAGES_TXT);
+                        DuplicatedImageFinder.SaveData(DUPLICATED_IMAGES_JSON);
                     }
                     else if (operation[0] == 'H' || operation[0] == 'h')
                     {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
 using System.Drawing;
+using Newtonsoft.Json;
 
 namespace duplicate_file_locator
 {
@@ -15,10 +16,10 @@ namespace duplicate_file_locator
 
         public static void AddHash(string hash, string pathToDuplicate)
         {
-            if (_duplicatedImages.Any(img => img.GetHash() == hash))
+            if (_duplicatedImages.Any(img => img.Hash == hash))
             {
                 // Get the DuplicatedImage object with the same hash value and add the path to the duplicate
-                _duplicatedImages.FirstOrDefault(img => img.GetHash() == hash).AddDuplicate(pathToDuplicate);
+                _duplicatedImages.FirstOrDefault(img => img.Hash == hash).AddDuplicate(pathToDuplicate);
             }
             else
             {
@@ -27,14 +28,27 @@ namespace duplicate_file_locator
             }
         }
 
-        public static void SaveData(string saveFilePath)
+        public static void SaveData(string saveDataFilePath)
         {
-            if(File.ReadLines(saveFilePath).First() == "No duplicates found.")
+            string json = JsonConvert.SerializeObject(_duplicatedImages);
+            File.WriteAllText(saveDataFilePath, json);
+        }
+
+        public static void LoadData(string saveDataFilePath)
+        {
+            string json = File.ReadAllText(saveDataFilePath);
+            _duplicatedImages = JsonConvert.DeserializeObject<List<DuplicatedImage>>(json);
+
+        }
+
+        public static void OutputData(string outputFilePath)
+        {
+            if(File.ReadLines(outputFilePath).First() == "No duplicates found.")
             {
-                File.WriteAllText(saveFilePath, "");
+                File.WriteAllText(outputFilePath, "");
             }
 
-            using (StreamWriter sw = File.AppendText(saveFilePath))
+            using (StreamWriter sw = File.AppendText(outputFilePath))
             {
                 foreach (var img in _duplicatedImages)
                 {
@@ -43,9 +57,20 @@ namespace duplicate_file_locator
             }
         }
 
-        public static void LoadData(string saveFilePath)
+        public static string DisplayData()
         {
-            // Placeholder for future development
+            string displayOutput = String.Empty;
+            foreach (var img in _duplicatedImages)
+            {
+                displayOutput += img;
+            }
+
+            if (displayOutput == String.Empty)
+            {
+                displayOutput = "No duplicates found.";
+            }
+
+            return displayOutput;
         }
 
         public static void FindOriginals(List<string> filePaths, List<string> hashesFound)
@@ -54,9 +79,9 @@ namespace duplicate_file_locator
             {
                 foreach(var img in _duplicatedImages)
                 {
-                    int i = hashesFound.IndexOf(img.GetHash());
+                    int i = hashesFound.IndexOf(img.Hash);
                     string ogPath = filePaths[i];
-                    img.AddOriginalPath(ogPath);
+                    img.OriginalPath = ogPath;
                 }
             }
             else
@@ -72,9 +97,9 @@ namespace duplicate_file_locator
 
             for (int i = 0; i < _duplicatedImages.Count; i++)
             {
-                string ogPath = _duplicatedImages[i].GetOriginalPath();
+                string ogPath = _duplicatedImages[i].OriginalPath;
                 Bitmap img1 = new Bitmap(ogPath);
-                foreach (var duplicatedPath in _duplicatedImages[i].GetDuplicates())
+                foreach (var duplicatedPath in _duplicatedImages[i].DuplicateImages)
                 {
                     Bitmap img2 = new Bitmap(duplicatedPath);
 
@@ -88,8 +113,8 @@ namespace duplicate_file_locator
                 // If there is just one added, then no possible duplicates
                 if (NotDuplicatePaths.Count > 1)
                 {
-                    DuplicatedImage temp = new DuplicatedImage(_duplicatedImages[i].GetHash());
-                    temp.AddOriginalPath(NotDuplicatePaths[0]);
+                    DuplicatedImage temp = new DuplicatedImage(_duplicatedImages[i].Hash);
+                    temp.OriginalPath = NotDuplicatePaths[0];
                     NotDuplicatePaths.RemoveAt(0);
                     foreach (var path in NotDuplicatePaths)
                     {
