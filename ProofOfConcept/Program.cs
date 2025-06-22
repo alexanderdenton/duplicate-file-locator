@@ -7,7 +7,7 @@ using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
 
-namespace duplicate_file_locator
+namespace ProofOfConcept
 {
 
     internal class Program

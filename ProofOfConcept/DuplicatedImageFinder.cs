@@ -8,7 +8,7 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Drawing;
 using Newtonsoft.Json;
 
-namespace duplicate_file_locator
+namespace ProofOfConcept
 {
     public static class DuplicatedImageFinder
     {

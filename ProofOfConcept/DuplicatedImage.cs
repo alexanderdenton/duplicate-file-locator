@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-namespace duplicate_file_locator
+namespace ProofOfConcept
 {
     public class DuplicatedImage
     {
