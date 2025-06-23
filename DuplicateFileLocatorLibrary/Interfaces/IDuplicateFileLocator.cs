@@ -13,10 +13,10 @@ namespace DuplicateFileLocatorLibrary.Interfaces
         /// <summary>
         /// Method searches recursively to find duplicated files.
         /// </summary>
-        /// <param name="pathToFolder">
-        /// Path to the folder to be searched.
+        /// <param name="dir">
+        /// Directory path to be searched.
         /// </param>
-        void FindDuplicateFiles(string pathToFolder);
+        void FindDuplicateFiles(string dir);
 
         /// <summary>
         /// Methods displays the duplicate files found including the original path.
@@ -42,18 +42,18 @@ namespace DuplicateFileLocatorLibrary.Interfaces
         /// <summary>
         /// Method exports the duplicate data in the same format as <see cref="DisplayDuplicateFiles">DisplayDuplicateFiles</see>.
         /// </summary>
-        /// <param name="pathToFile">
+        /// <param name="filePath">
         /// Path to the file to export data to.
         /// </param>
-        void ExportDuplicateFiles(string pathToFile);
+        void ExportDuplicateFiles(string filePath);
 
         /// <summary>
         /// Method hashes an individual file.
         /// </summary>
-        /// <param name="pathToFile">
+        /// <param name="filePath">
         /// Path to file to be hashed.
         /// </param>
-        void HashIndividualFile(string pathToFile);
+        void HashIndividualFile(string filePath);
 
         #endregion
     }
