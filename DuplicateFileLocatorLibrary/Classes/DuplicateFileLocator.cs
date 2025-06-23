@@ -102,7 +102,45 @@ namespace DuplicateFileLocatorLibrary.Classes
 
         public void VerifyDuplicateFiles()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Verifying duplicate files found...\n");
+
+            // List of paths that are not duplicates
+            List<string> notDuplicatePaths = new List<string>();
+
+            for (int i = 0; i < _duplicatedFiles.Count; i++)
+            {
+                string ogPath = _duplicatedFiles[i].OriginalPath;
+                Bitmap img1 = new Bitmap(ogPath);
+                foreach (var duplicatedPath in _duplicatedFiles[i].DuplicatePaths)
+                {
+                    Bitmap img2 = new Bitmap(duplicatedPath);
+
+                    if (!AreImagesEqual(img1, img2))
+                    {
+                        // Images are not duplicates.
+                        notDuplicatePaths.Add(duplicatedPath);
+                    }
+                }
+
+                // If the "duplicate files" were not actually duplicates
+                // If there is just one added, then no other duplicates
+                if (notDuplicatePaths.Count > 1)
+                {
+                    DuplicatedFile temp = new DuplicatedFile(_duplicatedFiles[i].Hash);
+                    temp.OriginalPath = notDuplicatePaths[0];
+                    notDuplicatePaths.RemoveAt(0);
+                    foreach (var path in notDuplicatePaths)
+                    {
+                        temp.AddDuplicatePath(path);
+                    }
+
+                    _duplicatedFiles.Add(temp);
+                    // Clear array otherwise you'll keep adding to it for the new file.
+                    // Only file paths with the same hash should be stored in the array 
+                    // at a given time.
+                    notDuplicatePaths = new List<string>();
+                }
+            }
         }
 
         public void DisplayDuplicateFiles()
@@ -321,6 +359,35 @@ namespace DuplicateFileLocatorLibrary.Classes
             }
 
             return output;
+        }
+
+        /// <summary>
+        /// Method checks size of bitmap then checks each pixel.
+        /// </summary>
+        /// <param name="bmp1">
+        /// Bitmap image.
+        /// </param>
+        /// <param name="bmp2">
+        /// Second bitmap image to compare against.
+        /// </param>
+        /// <returns>
+        /// True if images are the same.
+        /// </returns>
+        private bool AreImagesEqual(Bitmap bmp1, Bitmap bmp2)
+        {
+            if (bmp1.Width != bmp2.Width || bmp1.Height != bmp2.Height)
+                return false;
+
+            for (int y = 0; y < bmp1.Height; y++)
+            {
+                for (int x = 0; x < bmp1.Width; x++)
+                {
+                    if (bmp1.GetPixel(x, y) != bmp2.GetPixel(x, y))
+                        return false;
+                }
+            }
+
+            return true;
         }
 
         #endregion
