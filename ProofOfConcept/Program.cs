@@ -131,10 +131,6 @@ namespace ProofOfConcept
             files.Remove(file);
         }
 
-        //static void StoreDuplicatedImages(DuplicatedImage duplicatedImage)
-        //{
-            
-        //}
 
         static void Main(string[] args)
         {
