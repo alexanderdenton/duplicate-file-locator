@@ -19,15 +19,15 @@ namespace DuplicateFileLocatorLibrary.Interfaces
         void FindDuplicateFiles(string dir);
 
         /// <summary>
-        /// Methods displays the duplicate files found including the original path.
-        /// </summary>
-        void DisplayDuplicateFiles();
-
-        /// <summary>
         /// Method verifies that the files are in fact duplicates.
         /// This is needed as different files might create the same hash.
         /// </summary>
         void VerifyDuplicateFiles();
+
+        /// <summary>
+        /// Methods displays the duplicate files found including the original path.
+        /// </summary>
+        void DisplayDuplicateFiles();
 
         /// <summary>
         /// Method deletes all the data relating to duplicate files found.

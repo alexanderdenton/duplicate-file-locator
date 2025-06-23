@@ -11,7 +11,7 @@ namespace DuplicateFileLocatorLibrary.Classes
     {
         #region Private Attributes
 
-        private const string DUPLICATED_IMAGES_JSON = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\duplicated-images.json";
+        private const string DUPLICATED_FILES_JSON = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\duplicated-images.json";
         private const string DEFAULT_TXT_OUTPUT_PATH = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\duplicated-images.txt";
 
         private List<IDuplicatedFile> _duplicatedFiles;
@@ -20,6 +20,9 @@ namespace DuplicateFileLocatorLibrary.Classes
 
         #region Constructor
 
+        /// <summary>
+        /// Method initalises attributes and loads data.
+        /// </summary>
         public DuplicateFileLocator()
         {
             _duplicatedFiles = new List<IDuplicatedFile>();
@@ -75,7 +78,7 @@ namespace DuplicateFileLocatorLibrary.Classes
                     }
 
                     ConsoleUtility.WriteProgressBar(100, true);
-                    Console.WriteLine("\nTotal Images checked : {0}\nCollating Data now...", filesHashed);
+                    Console.WriteLine("\nTotal Images checked : {0}\nCollating Data now...\n", filesHashed);
 
                     // When the duplicate files are added only the hash and duplicate path is known.
                     // Using the filesPaths and hashesFound lists you can locate the original file path
@@ -97,34 +100,54 @@ namespace DuplicateFileLocatorLibrary.Classes
         
         }
 
-        public void DisplayDuplicateFiles()
-        {
-            throw new NotImplementedException();
-        }
-
         public void VerifyDuplicateFiles()
         {
             throw new NotImplementedException();
         }
 
+        public void DisplayDuplicateFiles()
+        {
+            Console.WriteLine(ToString());
+        }
+
         public void ClearDuplicateFiles()
         {
-            throw new NotImplementedException();
+            using (StreamWriter sw = File.CreateText(DUPLICATED_FILES_JSON))
+            {
+                sw.WriteLine();
+            }
+            Console.WriteLine("Duplicate file cleared.\n");
         }
 
         public void ExportDuplicateFiles()
         {
-            throw new NotImplementedException();
+            using (StreamWriter sw = File.CreateText(DEFAULT_TXT_OUTPUT_PATH))
+            {
+                sw.WriteLine(ToString());
+            }
+            Console.WriteLine("Duplicate file exported.\n");
         }
 
         public void ExportDuplicateFiles(string filePath)
         {
-            throw new NotImplementedException();
+            using (StreamWriter sw = File.CreateText(filePath))
+            {
+                sw.WriteLine(ToString());
+            }
+            Console.WriteLine("Duplicate file exported.\n");
         }
 
         public void HashIndividualFile(string filePath)
         {
-            throw new NotImplementedException();
+            if (Path.Exists(filePath))
+            {
+                string hash = CreateHash(filePath);
+                Console.WriteLine("Hash : {0}\n", hash);
+            }
+            else
+            {
+                Console.WriteLine("Path does not exist, please try again.\n");
+            }
         }
 
         #endregion
@@ -258,7 +281,7 @@ namespace DuplicateFileLocatorLibrary.Classes
             }
             else
             {
-                Console.WriteLine("Note: Can't find original files as filePaths and hashesFound are different in length");
+                Console.WriteLine("Note: Can't find original files as filePaths and hashesFound are different in length.\n");
             }
         }
 
@@ -267,7 +290,7 @@ namespace DuplicateFileLocatorLibrary.Classes
         /// </summary>
         private void LoadData()
         {
-            string json = File.ReadAllText(DUPLICATED_IMAGES_JSON);
+            string json = File.ReadAllText(DUPLICATED_FILES_JSON);
             _duplicatedFiles = JsonConvert.DeserializeObject<List<IDuplicatedFile>>(json);
         }
 
@@ -277,7 +300,27 @@ namespace DuplicateFileLocatorLibrary.Classes
         private void SaveData()
         {
             string json = JsonConvert.SerializeObject(_duplicatedFiles);
-            File.WriteAllText(DUPLICATED_IMAGES_JSON, json);
+            File.WriteAllText(DUPLICATED_FILES_JSON, json);
+        }
+
+        /// <summary>
+        /// Method converts list of duplicated files to a single string.
+        /// </summary>
+        /// <returns></returns>
+        private string ToString()
+        {
+            string output = String.Empty;
+            foreach (var file in _duplicatedFiles)
+            {
+                output += file + "\n";
+            }
+
+            if (output == String.Empty)
+            {
+                output = "No duplicate files found.";
+            }
+
+            return output;
         }
 
         #endregion
