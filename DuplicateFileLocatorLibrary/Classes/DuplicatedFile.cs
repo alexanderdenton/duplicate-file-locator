@@ -63,10 +63,10 @@ namespace DuplicateFileLocatorLibrary.Classes
         }
 
         [JsonConstructor]
-        public DuplicatedFile(string hash, string originalPath, List<string> duplicateImages) : this(hash)
+        public DuplicatedFile(string hash, string originalPath, List<string> duplicatePaths) : this(hash)
         {
             OriginalPath = originalPath;
-            DuplicatePaths = duplicateImages;
+            DuplicatePaths = duplicatePaths;
         }
 
         #endregion
