@@ -103,9 +103,34 @@ namespace DuplicateFileLocatorTests
 
         #region Setter Tests
 
+        [TestCase("C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\og\\P1040133 - Copy.JPG")]
+        [TestCase("C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\og\\20240809_152410.jpg")]
+        [Category("SetOriginalPath")]
+        public void SetOriginalPath(string path)
+        {
+            IDuplicatedFile duplicatedFile = new DuplicatedFile();
+
+            duplicatedFile.OriginalPath = path;
+
+            Assert.That(duplicatedFile.OriginalPath, Is.EqualTo(path));
+
+        }
+
         #endregion
 
         #region Public Method Tests
+
+        [TestCase("C:\\Users\\Alexa\\repos\\duplicate-file-locator\\test_files\\og\\P1040133.JPG")]
+        [Category("AddDuplicatePath")]
+        public void AddDuplicatePath(string path)
+        {
+            IDuplicatedFile duplicatedFile = new DuplicatedFile();
+
+            int numDuplicates = duplicatedFile.DuplicatePaths.Count;
+            duplicatedFile.AddDuplicatePath(path);
+
+            Assert.That(duplicatedFile.DuplicatePaths.Count, Is.EqualTo(numDuplicates+1));
+        }
 
         #endregion
     }
