@@ -329,7 +329,9 @@ namespace DuplicateFileLocatorLibrary.Classes
         private void LoadData()
         {
             string json = File.ReadAllText(DUPLICATED_FILES_JSON);
-            _duplicatedFiles = JsonConvert.DeserializeObject<List<IDuplicatedFile>>(json);
+            var deserialized = JsonConvert.DeserializeObject<List<DuplicatedFile>>(json);
+            _duplicatedFiles = deserialized.Cast<IDuplicatedFile>().ToList();
+
         }
 
         /// <summary>
