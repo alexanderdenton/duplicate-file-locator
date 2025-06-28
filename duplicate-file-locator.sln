@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicateFileLocatorLibrary
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicateFileLocatorTests", "DuplicateFileLocatorTests\DuplicateFileLocatorTests.csproj", "{8C5ED9B7-C30A-4F54-8E20-0B2F33AC1126}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicateFileLocatorConsole", "DuplicateFileLocatorConsole\DuplicateFileLocatorConsole.csproj", "{ECFB0505-2939-4D81-919B-6503CC57FBBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8C5ED9B7-C30A-4F54-8E20-0B2F33AC1126}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C5ED9B7-C30A-4F54-8E20-0B2F33AC1126}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C5ED9B7-C30A-4F54-8E20-0B2F33AC1126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECFB0505-2939-4D81-919B-6503CC57FBBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECFB0505-2939-4D81-919B-6503CC57FBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECFB0505-2939-4D81-919B-6503CC57FBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECFB0505-2939-4D81-919B-6503CC57FBBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
