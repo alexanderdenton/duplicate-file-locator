@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DuplicateFileLocatorConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "-f \"C:\\Users\\Alexa\\OneDrive\\Denton Family Photos\""
+    }
+  }
+}
