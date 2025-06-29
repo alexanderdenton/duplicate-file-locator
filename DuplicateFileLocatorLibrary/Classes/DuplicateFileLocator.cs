@@ -72,20 +72,17 @@ namespace DuplicateFileLocatorLibrary.Classes
                         string hash = CreateHash(filePaths[i]);
                         filesHashed++;
 
-                        if (hash != string.Empty)
+                        if (CheckHash(hash, hashesFound))
                         {
-                            if (hashesFound.Contains(hash))
-                            {
-                                AddDuplicateFile(hash, filePaths[i]);
-                                // Remove the duplicate path from list
-                                filePaths.Remove(filePaths[i]);
-                                i--;
-                            }
-                            else
-                            {
-                                // As this hash has not beed calculated yet, add to list.
-                                hashesFound.Add(hash);
-                            }
+                            AddDuplicateFile(hash, filePaths[i]);
+                            // Remove the duplicate path from list
+                            filePaths.Remove(filePaths[i]);
+                            i--;
+                        }
+                        else
+                        {
+                            // As this hash has not beed calculated yet, add to list.
+                            hashesFound.Add(hash);
                         }
                     }
 
@@ -95,6 +92,8 @@ namespace DuplicateFileLocatorLibrary.Classes
                     // When the duplicate files are added only the hash and duplicate path is known.
                     // Using the filesPaths and hashesFound lists you can locate the original file path
                     // because each index is related.
+                    // filePaths only contains paths of files which aren't duplicates and the original paths of the duplicates.
+                    // hashesFound only contains hashes never found before at the time of creation of the hash
                     FindOriginalPaths(filePaths, hashesFound);
 
                     SaveData();
@@ -310,7 +309,14 @@ namespace DuplicateFileLocatorLibrary.Classes
             if (_duplicatedFiles.Any(file => file.Hash == hash))
             {
                 // Get the DuplicatedFile object with the same hash value and add duplicate path.
-                _duplicatedFiles.FirstOrDefault(file => file.Hash == hash).AddDuplicatePath(filePath);
+                IDuplicatedFile duplicateFile = _duplicatedFiles.FirstOrDefault(file => file.Hash == hash);
+
+                // Only adds file path if it's different to what's already be found.
+                if (duplicateFile.OriginalPath != filePath && !duplicateFile.DuplicatePaths.Contains(filePath))
+                {
+                    duplicateFile.AddDuplicatePath(filePath);
+                }
+                
             }
             else
             {
@@ -335,9 +341,19 @@ namespace DuplicateFileLocatorLibrary.Classes
             {
                 foreach (var file in _duplicatedFiles)
                 {
-                    int i = hashesFound.IndexOf(file.Hash);
-                    string ogPath = filePaths[i];
-                    file.OriginalPath = ogPath;
+                    // only find original path if the duplicate file object doesn't have one
+                    if (file.OriginalPath == string.Empty)
+                    {
+                        int i = hashesFound.IndexOf(file.Hash);
+
+                        // Only add the ogPath if hash exists
+                        if (i >= 0)
+                        {
+                            string ogPath = filePaths[i];
+                            file.OriginalPath = ogPath;
+                        }
+                    }
+                    
                 }
             }
             else
@@ -436,6 +452,22 @@ namespace DuplicateFileLocatorLibrary.Classes
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Methods checks if hash has been found in known duplicates, or within folder being searched.
+        /// </summary>
+        /// <param name="hash"></param>
+        /// <param name="hashesFound"></param>
+        /// <returns></returns>
+        private bool CheckHash(string hash, List<string> hashesFound)
+        {
+            if (hash == string.Empty)
+                return false;
+            else
+                // returns true if hash is already a known duplicate or if the hash is contained within
+                // the temporary list of known hashes.
+                return _duplicatedFiles.Any(file => file.Hash == hash) || hashesFound.Contains(hash);
         }
 
         #endregion
