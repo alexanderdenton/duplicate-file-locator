@@ -14,6 +14,9 @@ namespace DuplicateFileLocatorLibrary.Classes
         private const string DUPLICATED_FILES_JSON = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\duplicated-images.json";
         private const string DEFAULT_TXT_OUTPUT_PATH = "C:\\Users\\Alexa\\repos\\duplicate-file-locator\\duplicated-images.txt";
 
+        // This is used to replace DUPLICATED_FILES_JSON
+        private string _duplicatedFilesJson;
+
         private List<IDuplicatedFile> _duplicatedFiles;
 
         #endregion
@@ -25,6 +28,15 @@ namespace DuplicateFileLocatorLibrary.Classes
         /// </summary>
         public DuplicateFileLocator()
         {
+            _duplicatedFiles = new List<IDuplicatedFile>();
+
+            LoadData();
+        }
+
+        public DuplicateFileLocator(string jsonPath)
+        {
+            _duplicatedFilesJson = jsonPath;
+
             _duplicatedFiles = new List<IDuplicatedFile>();
 
             LoadData();
@@ -150,10 +162,21 @@ namespace DuplicateFileLocatorLibrary.Classes
 
         public void ClearDuplicateFiles()
         {
-            using (StreamWriter sw = File.CreateText(DUPLICATED_FILES_JSON))
+            if (_duplicatedFilesJson != null)
             {
-                sw.WriteLine();
+                using (StreamWriter sw = File.CreateText(_duplicatedFilesJson))
+                {
+                    sw.WriteLine();
+                }
             }
+            else
+            {
+                using (StreamWriter sw = File.CreateText(DUPLICATED_FILES_JSON))
+                {
+                    sw.WriteLine();
+                }
+            }
+                
             Console.WriteLine("Duplicate file cleared.\n");
         }
 
@@ -328,9 +351,25 @@ namespace DuplicateFileLocatorLibrary.Classes
         /// </summary>
         private void LoadData()
         {
-            string json = File.ReadAllText(DUPLICATED_FILES_JSON);
-            _duplicatedFiles = JsonConvert.DeserializeObject<List<IDuplicatedFile>>(json);
+            string json = string.Empty;
+            if (_duplicatedFilesJson != null)
+            {
+                json = File.ReadAllText(_duplicatedFilesJson);
+            }
+            else
+            {
+                json = File.ReadAllText(DUPLICATED_FILES_JSON);
+            }
 
+            try
+            {
+                var deserialized = JsonConvert.DeserializeObject<List<DuplicatedFile>>(json);
+                _duplicatedFiles = deserialized.Cast<IDuplicatedFile>().ToList();
+            }
+            catch
+            {
+
+            }
         }
 
         /// <summary>
@@ -339,7 +378,15 @@ namespace DuplicateFileLocatorLibrary.Classes
         private void SaveData()
         {
             string json = JsonConvert.SerializeObject(_duplicatedFiles);
-            File.WriteAllText(DUPLICATED_FILES_JSON, json);
+
+            if (_duplicatedFilesJson != null)
+            {
+                File.WriteAllText(_duplicatedFilesJson, json);
+            }
+            else
+            {
+                File.WriteAllText(DUPLICATED_FILES_JSON, json);
+            }
         }
 
         /// <summary>

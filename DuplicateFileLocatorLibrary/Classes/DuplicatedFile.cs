@@ -66,7 +66,13 @@ namespace DuplicateFileLocatorLibrary.Classes
         public DuplicatedFile(string hash, string originalPath, List<string> duplicatePaths) : this(hash)
         {
             OriginalPath = originalPath;
-            DuplicatePaths = duplicatePaths;
+            if(duplicatePaths != null)
+            {
+                foreach (var path in duplicatePaths)
+                {
+                    DuplicatePaths.Add(path);
+                }
+            }
         }
 
         #endregion
