@@ -7,7 +7,7 @@ using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
 
-namespace duplicate_file_locator
+namespace ProofOfConcept
 {
 
     internal class Program
@@ -131,10 +131,6 @@ namespace duplicate_file_locator
             files.Remove(file);
         }
 
-        //static void StoreDuplicatedImages(DuplicatedImage duplicatedImage)
-        //{
-            
-        //}
 
         static void Main(string[] args)
         {

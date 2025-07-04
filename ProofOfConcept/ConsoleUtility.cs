@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace duplicate_file_locator
+namespace ProofOfConcept
 {
     // Ref: https://www.codeproject.com/Tips/5255878/A-Console-Progress-Bar-in-Csharp
     public static class ConsoleUtility

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DuplicateFileLocatorConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "-v"
+    }
+  }
+}
