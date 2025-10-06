@@ -1,0 +1,143 @@
+\doxysection{Duplicated\+File\+Tests.\+cs}
+\hypertarget{_duplicated_file_tests_8cs_source}{}\label{_duplicated_file_tests_8cs_source}\index{C:/Users/alexa/source/repos/duplicate-\/file-\/locator/DuplicateFileLocatorTests/DuplicatedFileTests.cs@{C:/Users/alexa/source/repos/duplicate-\/file-\/locator/DuplicateFileLocatorTests/DuplicatedFileTests.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_duplicate_file_locator_library_1_1_classes}{DuplicateFileLocatorLibrary.Classes}};}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_duplicate_file_locator_library_1_1_interfaces}{DuplicateFileLocatorLibrary.Interfaces}};}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }NUnit.Framework;}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00005}\mbox{\hyperlink{namespace_duplicate_file_locator_tests}{00005}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_duplicate_file_locator_tests}{DuplicateFileLocatorTests}}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00007}00007\ \ \ \ \ [TestFixture]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00008}\mbox{\hyperlink{class_duplicate_file_locator_tests_1_1_duplicated_file_tests}{00008}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_duplicate_file_locator_tests_1_1_duplicated_file_tests}{DuplicatedFileTests}}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00009}00009\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00010}00010\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Constructor\ Tests}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00012}00012\ \ \ \ \ \ \ \ \ [Test]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ [Category(\textcolor{stringliteral}{"{}Constructor\ Tests"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ DuplicatedFile\_BasicConstructor()}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Arrange}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file}{IDuplicatedFile}}\ duplicatedFile\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicated_file}{DuplicatedFile}}();}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Act}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hash\ =\ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a02b68ed3be3487722ff8abe6eaa4af74}{Hash}};}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ originalPath\ =\ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a1335151ae7ed9b532d2791d510b4c851}{OriginalPath}};}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ duplicatedPaths\ =\ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a52a4e6596ed6c9259ad324f87ded7949}{DuplicatePaths}};}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assert}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.Multiple(()\ =>}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(hash,\ Is.EqualTo(\textcolor{keywordtype}{string}.Empty));}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(originalPath,\ Is.EqualTo(\textcolor{keywordtype}{string}.Empty));}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(duplicatedPaths,\ Is.Empty);}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}BC1173AE1C119128CCCA7190BDD16FAF"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}38357FEEAA7392183DD16A34FE681100"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}769F0CACE7B957755C9B770CAE24D88F"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ [Category(\textcolor{stringliteral}{"{}Constructor\ Tests"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ DuplicatedFile\_InitialisesHash(\textcolor{keywordtype}{string}\ fileHash)}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file}{IDuplicatedFile}}\ duplicatedFile\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicated_file}{DuplicatedFile}}(fileHash);}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hash\ =\ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a02b68ed3be3487722ff8abe6eaa4af74}{Hash}};}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(hash,\ Is.EqualTo(fileHash));}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}BC1173AE1C119128CCCA7190BDD16FAF"{}},\ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)og\(\backslash\)\(\backslash\)P1040133.JPG"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}38357FEEAA7392183DD16A34FE681100"{}},\ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)same\_name\(\backslash\)\(\backslash\)20240809\_152410.jpg"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}769F0CACE7B957755C9B770CAE24D88F"{}},\ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)OneDrive\(\backslash\)\(\backslash\)Denton\ Family\ Photos\(\backslash\)\(\backslash\)2004\(\backslash\)\(\backslash\)2004-\/07\(\backslash\)\(\backslash\)ALEX\ 03.07.04\ 026.jpg"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ [Category(\textcolor{stringliteral}{"{}Constructor\ Tests"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ DuplicatedFile\_InitialisesHashAndDuplicatePath(\textcolor{keywordtype}{string}\ fileHash,\ \textcolor{keywordtype}{string}\ filePath)}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file}{IDuplicatedFile}}\ duplicatedFile\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicated_file}{DuplicatedFile}}(fileHash,\ filePath);}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hash\ =\ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a02b68ed3be3487722ff8abe6eaa4af74}{Hash}};}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numDuplicatePaths\ =\ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a52a4e6596ed6c9259ad324f87ded7949}{DuplicatePaths}}.Count;}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ duplicateFilePath\ =\ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a52a4e6596ed6c9259ad324f87ded7949}{DuplicatePaths}}.First();}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.Multiple(()\ =>}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(hash,\ Is.EqualTo(fileHash));}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(numDuplicatePaths,\ Is.EqualTo(1));}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(duplicateFilePath,\ Is.EqualTo(filePath));}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}BC1173AE1C119128CCCA7190BDD16FAF"{}},\ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)og\(\backslash\)\(\backslash\)P1040133\ -\/\ Copy.JPG"{}},\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \textcolor{keywordtype}{string}[]\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)og\(\backslash\)\(\backslash\)P1040133.JPG"{}},}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)same\_name\(\backslash\)\(\backslash\)P1040133.JPG"{}},}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)same\_name\_diff\_date\(\backslash\)\(\backslash\)P1040133.JPG"{}}\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}38357FEEAA7392183DD16A34FE681100"{}},\ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)og\(\backslash\)\(\backslash\)20240809\_152410.jpg"{}},\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \textcolor{keywordtype}{string}[]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)same\_name\(\backslash\)\(\backslash\)20240809\_152410.jpg"{}}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}769F0CACE7B957755C9B770CAE24D88F"{}},\ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)OneDrive\(\backslash\)\(\backslash\)Denton\ Family\ Photos\(\backslash\)\(\backslash\)2004\(\backslash\)\(\backslash\)2004-\/07\(\backslash\)\(\backslash\)ALEX\ 03.07.04\ 017.jpg"{}},\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \textcolor{keywordtype}{string}[]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)OneDrive\(\backslash\)\(\backslash\)Denton\ Family\ Photos\(\backslash\)\(\backslash\)2004\(\backslash\)\(\backslash\)2004-\/07\(\backslash\)\(\backslash\)ALEX\ 03.07.04\ 026.jpg"{}}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ [Category(\textcolor{stringliteral}{"{}Constructor\ Tests"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ DuplicatedFile\_InitialisesHashOriginalPathAndDuplicatePath(\textcolor{keywordtype}{string}\ fileHash,\ \textcolor{keywordtype}{string}\ filePath,\ \textcolor{keywordtype}{string}[]\ duplicatePaths)}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ duplicates\ =\ \textcolor{keyword}{new}\ List<string>(duplicatePaths);}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file}{IDuplicatedFile}}\ duplicatedFile\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicated_file}{DuplicatedFile}}(fileHash,\ filePath,\ duplicates);}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hash\ =\ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a02b68ed3be3487722ff8abe6eaa4af74}{Hash}};}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ originalPath\ =\ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a1335151ae7ed9b532d2791d510b4c851}{OriginalPath}};}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numDuplicatePaths\ =\ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a52a4e6596ed6c9259ad324f87ded7949}{DuplicatePaths}}.Count;}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.Multiple(()\ =>}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(hash,\ Is.EqualTo(fileHash));}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(originalPath,\ Is.EqualTo(filePath));}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(numDuplicatePaths,\ Is.EqualTo(duplicatePaths.Length));}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00102}00102\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00104}00104\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Setter\ Tests}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)og\(\backslash\)\(\backslash\)P1040133\ -\/\ Copy.JPG"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)og\(\backslash\)\(\backslash\)20240809\_152410.jpg"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ [Category(\textcolor{stringliteral}{"{}SetOriginalPath"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SetOriginalPath(\textcolor{keywordtype}{string}\ path)}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file}{IDuplicatedFile}}\ duplicatedFile\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicated_file}{DuplicatedFile}}();}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ duplicatedFile.OriginalPath\ =\ path;}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a1335151ae7ed9b532d2791d510b4c851}{OriginalPath}},\ Is.EqualTo(path));}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00119}00119\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00121}00121\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Method\ Tests}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ [TestCase(\textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)og\(\backslash\)\(\backslash\)P1040133.JPG"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ [Category(\textcolor{stringliteral}{"{}AddDuplicatePath"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddDuplicatePath(\textcolor{keywordtype}{string}\ path)}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file}{IDuplicatedFile}}\ duplicatedFile\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicated_file}{DuplicatedFile}}();}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numDuplicates\ =\ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a52a4e6596ed6c9259ad324f87ded7949}{DuplicatePaths}}.Count;}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_ae6552449625f4f6ee2fee16fb0fe7b29}{AddDuplicatePath}}(path);}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ Assert.That(duplicatedFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a52a4e6596ed6c9259ad324f87ded7949}{DuplicatePaths}}.Count,\ Is.EqualTo(numDuplicates+1));}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00135}00135\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00136}00136\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_file_tests_8cs_source_l00137}00137\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,155 @@
+\doxysection{Duplicate\+File\+Locator\+Library.\+Interfaces.\+IDuplicate\+File\+Locator Interface Reference}
+\hypertarget{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator}{}\label{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator}\index{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}}
+Inheritance diagram for Duplicate\+File\+Locator\+Library.\+Interfaces.\+IDuplicate\+File\+Locator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a0d4bfe6fe3ce850c01b1d4df2ff48491}{Find\+Duplicate\+Files}} (string dir)
+\begin{DoxyCompactList}\small\item\em Method searches recursively to find duplicated files. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ad015c4810b808deb994306e22cfbff12}{Verify\+Duplicate\+Files}} ()
+\begin{DoxyCompactList}\small\item\em Method verifies that the files are in fact duplicates. This is needed as different files might create the same hash. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ac6c73af68e403fbbc6440a79180008ce}{Display\+Duplicate\+Files}} ()
+\begin{DoxyCompactList}\small\item\em Methods displays the duplicate files found including the original path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a0a789196ff6eddc596c7441c95ad948a}{Clear\+Duplicate\+Files}} ()
+\begin{DoxyCompactList}\small\item\em Method deletes all the data relating to duplicate files found. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a1e21eca2a67685689635a11b3582f384}{Export\+Duplicate\+Files}} ()
+\begin{DoxyCompactList}\small\item\em Method exports the duplicate data in the same format as \doxylink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ac6c73af68e403fbbc6440a79180008ce}{Display\+Duplicate\+Files}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ad9bc245e12f68f1498dbe61c8cc994f8}{Export\+Duplicate\+Files}} (string file\+Path)
+\begin{DoxyCompactList}\small\item\em Method exports the duplicate data in the same format as \doxylink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ac6c73af68e403fbbc6440a79180008ce}{Display\+Duplicate\+Files}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a1baedf8496fe03e8d963b7e30a266715}{Hash\+Individual\+File}} (string file\+Path)
+\begin{DoxyCompactList}\small\item\em Method hashes an individual file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_i_duplicate_file_locator_8cs_source_l00009}{9}} of file \mbox{\hyperlink{_i_duplicate_file_locator_8cs_source}{IDuplicate\+File\+Locator.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a0a789196ff6eddc596c7441c95ad948a}\index{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}!ClearDuplicateFiles@{ClearDuplicateFiles}}
+\index{ClearDuplicateFiles@{ClearDuplicateFiles}!DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}}
+\doxysubsubsection{\texorpdfstring{ClearDuplicateFiles()}{ClearDuplicateFiles()}}
+{\footnotesize\ttfamily \label{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a0a789196ff6eddc596c7441c95ad948a} 
+void Duplicate\+File\+Locator\+Library.\+Interfaces.\+IDuplicate\+File\+Locator.\+Clear\+Duplicate\+Files (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Method deletes all the data relating to duplicate files found. 
+
+
+
+Implemented in \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a4e40341f6fc6f0fd259fd486ff5ff19b}{Duplicate\+File\+Locator\+Library.\+Classes.\+Duplicate\+File\+Locator}}.
+
+\Hypertarget{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ac6c73af68e403fbbc6440a79180008ce}\index{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}!DisplayDuplicateFiles@{DisplayDuplicateFiles}}
+\index{DisplayDuplicateFiles@{DisplayDuplicateFiles}!DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}}
+\doxysubsubsection{\texorpdfstring{DisplayDuplicateFiles()}{DisplayDuplicateFiles()}}
+{\footnotesize\ttfamily \label{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ac6c73af68e403fbbc6440a79180008ce} 
+void Duplicate\+File\+Locator\+Library.\+Interfaces.\+IDuplicate\+File\+Locator.\+Display\+Duplicate\+Files (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Methods displays the duplicate files found including the original path. 
+
+
+
+Implemented in \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_ae598ec249de83dbf9bfdf92861a79315}{Duplicate\+File\+Locator\+Library.\+Classes.\+Duplicate\+File\+Locator}}.
+
+\Hypertarget{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a1e21eca2a67685689635a11b3582f384}\index{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}!ExportDuplicateFiles@{ExportDuplicateFiles}}
+\index{ExportDuplicateFiles@{ExportDuplicateFiles}!DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}}
+\doxysubsubsection{\texorpdfstring{ExportDuplicateFiles()}{ExportDuplicateFiles()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a1e21eca2a67685689635a11b3582f384} 
+void Duplicate\+File\+Locator\+Library.\+Interfaces.\+IDuplicate\+File\+Locator.\+Export\+Duplicate\+Files (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Method exports the duplicate data in the same format as \doxylink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ac6c73af68e403fbbc6440a79180008ce}{Display\+Duplicate\+Files}. 
+
+
+
+Implemented in \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a476ea87ef1791378e669971919dbe486}{Duplicate\+File\+Locator\+Library.\+Classes.\+Duplicate\+File\+Locator}}.
+
+\Hypertarget{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ad9bc245e12f68f1498dbe61c8cc994f8}\index{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}!ExportDuplicateFiles@{ExportDuplicateFiles}}
+\index{ExportDuplicateFiles@{ExportDuplicateFiles}!DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}}
+\doxysubsubsection{\texorpdfstring{ExportDuplicateFiles()}{ExportDuplicateFiles()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ad9bc245e12f68f1498dbe61c8cc994f8} 
+void Duplicate\+File\+Locator\+Library.\+Interfaces.\+IDuplicate\+File\+Locator.\+Export\+Duplicate\+Files (\begin{DoxyParamCaption}\item[{string}]{file\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Method exports the duplicate data in the same format as \doxylink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ac6c73af68e403fbbc6440a79180008ce}{Display\+Duplicate\+Files}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & Path to the file to export data to. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a4407b77b01a651698be9344d0fbe7a80}{Duplicate\+File\+Locator\+Library.\+Classes.\+Duplicate\+File\+Locator}}.
+
+\Hypertarget{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a0d4bfe6fe3ce850c01b1d4df2ff48491}\index{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}!FindDuplicateFiles@{FindDuplicateFiles}}
+\index{FindDuplicateFiles@{FindDuplicateFiles}!DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}}
+\doxysubsubsection{\texorpdfstring{FindDuplicateFiles()}{FindDuplicateFiles()}}
+{\footnotesize\ttfamily \label{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a0d4bfe6fe3ce850c01b1d4df2ff48491} 
+void Duplicate\+File\+Locator\+Library.\+Interfaces.\+IDuplicate\+File\+Locator.\+Find\+Duplicate\+Files (\begin{DoxyParamCaption}\item[{string}]{dir}{}\end{DoxyParamCaption})}
+
+
+
+Method searches recursively to find duplicated files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & Directory path to be searched. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a771abfcff09ff810e50a7e1c06179e37}{Duplicate\+File\+Locator\+Library.\+Classes.\+Duplicate\+File\+Locator}}.
+
+\Hypertarget{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a1baedf8496fe03e8d963b7e30a266715}\index{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}!HashIndividualFile@{HashIndividualFile}}
+\index{HashIndividualFile@{HashIndividualFile}!DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}}
+\doxysubsubsection{\texorpdfstring{HashIndividualFile()}{HashIndividualFile()}}
+{\footnotesize\ttfamily \label{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_a1baedf8496fe03e8d963b7e30a266715} 
+void Duplicate\+File\+Locator\+Library.\+Interfaces.\+IDuplicate\+File\+Locator.\+Hash\+Individual\+File (\begin{DoxyParamCaption}\item[{string}]{file\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Method hashes an individual file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & Path to file to be hashed. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a35e4a3054be1b3ee126f4c0f34a5b50e}{Duplicate\+File\+Locator\+Library.\+Classes.\+Duplicate\+File\+Locator}}.
+
+\Hypertarget{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ad015c4810b808deb994306e22cfbff12}\index{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}!VerifyDuplicateFiles@{VerifyDuplicateFiles}}
+\index{VerifyDuplicateFiles@{VerifyDuplicateFiles}!DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator@{DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator}}
+\doxysubsubsection{\texorpdfstring{VerifyDuplicateFiles()}{VerifyDuplicateFiles()}}
+{\footnotesize\ttfamily \label{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator_ad015c4810b808deb994306e22cfbff12} 
+void Duplicate\+File\+Locator\+Library.\+Interfaces.\+IDuplicate\+File\+Locator.\+Verify\+Duplicate\+Files (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Method verifies that the files are in fact duplicates. This is needed as different files might create the same hash. 
+
+
+
+Implemented in \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a92ce0e0025ccb508cc2b83c622f8ff07}{Duplicate\+File\+Locator\+Library.\+Classes.\+Duplicate\+File\+Locator}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/alexa/source/repos/duplicate-\/file-\/locator/\+Duplicate\+File\+Locator\+Library/\+Interfaces/IDuplicate\+File\+Locator.\+cs\end{DoxyCompactItemize}
