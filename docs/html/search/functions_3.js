@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['exportduplicatefiles_0',['ExportDuplicateFiles',['../class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator.html#a476ea87ef1791378e669971919dbe486',1,'DuplicateFileLocatorLibrary.Classes.DuplicateFileLocator.ExportDuplicateFiles()'],['../class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator.html#a4407b77b01a651698be9344d0fbe7a80',1,'DuplicateFileLocatorLibrary.Classes.DuplicateFileLocator.ExportDuplicateFiles(string filePath)'],['../interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator.html#a1e21eca2a67685689635a11b3582f384',1,'DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator.ExportDuplicateFiles()'],['../interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator.html#ad9bc245e12f68f1498dbe61c8cc994f8',1,'DuplicateFileLocatorLibrary.Interfaces.IDuplicateFileLocator.ExportDuplicateFiles(string filePath)']]]
+];
