@@ -1,0 +1,83 @@
+\doxysection{Duplicated\+Image.\+cs}
+\hypertarget{_duplicated_image_8cs_source}{}\label{_duplicated_image_8cs_source}\index{ProofOfConcept/DuplicatedImage.cs@{ProofOfConcept/DuplicatedImage.cs}}
+\mbox{\hyperlink{_duplicated_image_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }Newtonsoft.Json;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00009}00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_proof_of_concept}{ProofOfConcept}}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00011}\mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image}{00011}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_aed6409774a43003b6af863b3d5af7fe2}{DuplicatedImage}}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ \_hash;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ \_originalPath;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ List<string>\ \_duplicateImages;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ [JsonProperty(\textcolor{stringliteral}{"{}Hash"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00018}\mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_ab530ab23380c9fc6057d00d3089ca19b}{00018}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_ab530ab23380c9fc6057d00d3089ca19b}{Hash}}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ \_hash;\ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{set}\ \{\ \_hash\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ [JsonProperty(\textcolor{stringliteral}{"{}OriginalPath"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00025}\mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_af9072c1ff38ff9f61d48091e3445bc4d}{00025}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_af9072c1ff38ff9f61d48091e3445bc4d}{OriginalPath}}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ \_originalPath;\ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ \_originalPath\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ [JsonProperty(\textcolor{stringliteral}{"{}DuplicateImages"{}})]}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00032}\mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_adf4c79082e35fcae67d560a2991e2bc5}{00032}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ List<string>\ \mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_adf4c79082e35fcae67d560a2991e2bc5}{DuplicateImages}}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ \_duplicateImages;\ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00037}\mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_aed6409774a43003b6af863b3d5af7fe2}{00037}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_aed6409774a43003b6af863b3d5af7fe2}{DuplicatedImage}}()\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \_hash\ =\ \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \_originalPath\ =\ \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \_duplicateImages\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00044}\mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_ad664beb066e6287de0b7d745f2e8b652}{00044}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_ad664beb066e6287de0b7d745f2e8b652}{DuplicatedImage}}(\textcolor{keywordtype}{string}\ hash)\ :\ this()}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \_hash\ =\ hash;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00049}\mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_aaad467278e2d1da1dd2f782fab100dc0}{00049}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_aaad467278e2d1da1dd2f782fab100dc0}{DuplicatedImage}}(\textcolor{keywordtype}{string}\ hash,\ \textcolor{keywordtype}{string}\ duplicatePath)\ :\ this(hash)}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_adf4c79082e35fcae67d560a2991e2bc5}{DuplicateImages}}.Add(duplicatePath);}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ [JsonConstructor]}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00055}\mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_a08ed78428764b3022a05e2d1e7a965b3}{00055}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_a08ed78428764b3022a05e2d1e7a965b3}{DuplicatedImage}}(\textcolor{keywordtype}{string}\ hash,\ \textcolor{keywordtype}{string}\ originalPath,\ List<string>\ duplicateImages)\ :\ this(hash)}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \_originalPath\ =\ originalPath;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \_duplicateImages\ =\ duplicateImages;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00061}\mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_aaecfca8766de25f6c8924103495faf3c}{00061}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_aaecfca8766de25f6c8924103495faf3c}{AddDuplicate}}(\textcolor{keywordtype}{string}\ path)}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_duplicateImages.Contains(path))}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_duplicateImages.Add(path);}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00067}\mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_ac9e3f659499cdf1523257b430701afa3}{00067}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_proof_of_concept_1_1_duplicated_image_ac9e3f659499cdf1523257b430701afa3}{ToString}}()}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ output\ =\ \textcolor{stringliteral}{"{}Hash\ :\ "{}}\ +\ \_hash\ +\ \textcolor{stringliteral}{"{}\(\backslash\)nOriginal\ :\ "{}}\ +\ \_originalPath\ +\ \textcolor{stringliteral}{"{}\(\backslash\)nDuplicates\ :\ \(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\textcolor{keywordtype}{string}\ image\ \textcolor{keywordflow}{in}\ \_duplicateImages)}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)t\(\backslash\)t"{}}\ +\ image\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ output;}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00076}00076\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicated_image_8cs_source_l00077}00077\ \}}
+
+\end{DoxyCode}

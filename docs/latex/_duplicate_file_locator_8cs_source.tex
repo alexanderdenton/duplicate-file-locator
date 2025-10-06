@@ -1,0 +1,404 @@
+\doxysection{Duplicate\+File\+Locator.\+cs}
+\hypertarget{_duplicate_file_locator_8cs_source}{}\label{_duplicate_file_locator_8cs_source}\index{DuplicateFileLocatorLibrary/Classes/DuplicateFileLocator.cs@{DuplicateFileLocatorLibrary/Classes/DuplicateFileLocator.cs}}
+\mbox{\hyperlink{_duplicate_file_locator_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_duplicate_file_locator_library_1_1_interfaces}{DuplicateFileLocatorLibrary.Interfaces}};}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_duplicate_file_locator_library_1_1_utilities}{DuplicateFileLocatorLibrary.Utilities}};}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }Newtonsoft.Json;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Drawing;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Security.Cryptography;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00008}00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_duplicate_file_locator_library_1_1_classes}{DuplicateFileLocatorLibrary.Classes}}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00010}\mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator}{00010}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_ade1a3e8fb60753ede1da85683ff93498}{DuplicateFileLocator}}\ :\ \mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicate_file_locator}{IDuplicateFileLocator}}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00011}00011\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00012}00012\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ Attributes}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ DUPLICATED\_FILES\_JSON\ =\ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)duplicated-\/images.json"{}};}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ DEFAULT\_TXT\_OUTPUT\_PATH\ =\ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)duplicated-\/images.txt"{}};}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ used\ to\ replace\ DUPLICATED\_FILES\_JSON}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ \_duplicatedFilesJson;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ List<IDuplicatedFile>\ \_duplicatedFiles;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00022}00022\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00024}00024\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Constructor}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00029}\mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_ade1a3e8fb60753ede1da85683ff93498}{00029}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_ade1a3e8fb60753ede1da85683ff93498}{DuplicateFileLocator}}()}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \_duplicatedFiles\ =\ \textcolor{keyword}{new}\ List<IDuplicatedFile>();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ LoadData();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00036}\mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a1abae005764b368fd7074209268cf8d7}{00036}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a1abae005764b368fd7074209268cf8d7}{DuplicateFileLocator}}(\textcolor{keywordtype}{string}\ jsonPath)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \_duplicatedFilesJson\ =\ jsonPath;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \_duplicatedFiles\ =\ \textcolor{keyword}{new}\ List<IDuplicatedFile>();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ LoadData();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00045}00045\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00047}00047\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Methods}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00049}\mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a771abfcff09ff810e50a7e1c06179e37}{00049}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a771abfcff09ff810e50a7e1c06179e37}{FindDuplicateFiles}}(\textcolor{keywordtype}{string}\ dir)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ path\ exists.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Path.Exists(dir))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ List\ contains\ all\ file\ paths\ but\ by\ the\ end\ of\ the\ method\ will\ only\ contatin}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ non\ duplicate\ file\ paths\ (paths\ to\ files\ which\ are\ not\ duplicates)}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ filePaths\ =\ GetAllFilesInDirectory(dir);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ totalFiles\ =\ filePaths.Count;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ folder\ contains\ files}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (totalFiles\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ filesHashed\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ hashesFound\ stores\ all\ the\ different\ hashes\ calculated.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ hashesFound\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ filePaths.Count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ and\ display\ progress}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ progress\ =\ (filesHashed\ *\ 100)\ /\ totalFiles;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ConsoleUtility.WriteProgressBar(progress,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hash\ =\ CreateHash(filePaths[i]);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ filesHashed++;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (CheckHash(hash,\ hashesFound))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddDuplicateFile(hash,\ filePaths[i]);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ the\ duplicate\ path\ from\ list}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ filePaths.Remove(filePaths[i]);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ As\ this\ hash\ has\ not\ beed\ calculated\ yet,\ add\ to\ list.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hashesFound.Add(hash);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ConsoleUtility.WriteProgressBar(100,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}\(\backslash\)nTotal\ Images\ checked\ :\ \{0\}\(\backslash\)nCollating\ Data\ now...\(\backslash\)n"{}},\ filesHashed);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ When\ the\ duplicate\ files\ are\ added\ only\ the\ hash\ and\ duplicate\ path\ is\ known.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Using\ the\ filesPaths\ and\ hashesFound\ lists\ you\ can\ locate\ the\ original\ file\ path}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ because\ each\ index\ is\ related.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ filePaths\ only\ contains\ paths\ of\ files\ which\ aren't\ duplicates\ and\ the\ original\ paths\ of\ the\ duplicates.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ hashesFound\ only\ contains\ hashes\ never\ found\ before\ at\ the\ time\ of\ creation\ of\ the\ hash}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FindOriginalPaths(filePaths,\ hashesFound);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveData();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}There\ are\ no\ files\ in\ this\ directory\ and\ it's\ subdirectories,\ please\ try\ again.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Path\ does\ not\ exist,\ please\ try\ again.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00114}\mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a92ce0e0025ccb508cc2b83c622f8ff07}{00114}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a92ce0e0025ccb508cc2b83c622f8ff07}{VerifyDuplicateFiles}}()}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Verifying\ duplicate\ files\ found...\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ List\ of\ paths\ that\ are\ not\ duplicates}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ notDuplicatePaths\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \_duplicatedFiles.Count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ ogPath\ =\ \_duplicatedFiles[i].OriginalPath;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Bitmap\ img1\ =\ \textcolor{keyword}{new}\ Bitmap(ogPath);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ duplicatedPath\ \textcolor{keywordflow}{in}\ \_duplicatedFiles[i].DuplicatePaths)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Bitmap\ img2\ =\ \textcolor{keyword}{new}\ Bitmap(duplicatedPath);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!AreImagesEqual(img1,\ img2))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Images\ are\ not\ duplicates.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ notDuplicatePaths.Add(duplicatedPath);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ "{}duplicate\ files"{}\ were\ not\ actually\ duplicates}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ there\ is\ just\ one\ added,\ then\ no\ other\ duplicates}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (notDuplicatePaths.Count\ >\ 1)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicated_file}{DuplicatedFile}}\ temp\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicated_file}{DuplicatedFile}}(\_duplicatedFiles[i].Hash);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.OriginalPath\ =\ notDuplicatePaths[0];}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ notDuplicatePaths.RemoveAt(0);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ path\ \textcolor{keywordflow}{in}\ notDuplicatePaths)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.AddDuplicatePath(path);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_duplicatedFiles.Add(temp);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clear\ array\ otherwise\ you'll\ keep\ adding\ to\ it\ for\ the\ new\ file.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ file\ paths\ with\ the\ same\ hash\ should\ be\ stored\ in\ the\ array\ }}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ at\ a\ given\ time.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ notDuplicatePaths\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00157}\mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_ae598ec249de83dbf9bfdf92861a79315}{00157}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_ae598ec249de83dbf9bfdf92861a79315}{DisplayDuplicateFiles}}()}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(ToString());}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00162}\mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a4e40341f6fc6f0fd259fd486ff5ff19b}{00162}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a4e40341f6fc6f0fd259fd486ff5ff19b}{ClearDuplicateFiles}}()}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_duplicatedFilesJson\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (StreamWriter\ sw\ =\ File.CreateText(\_duplicatedFilesJson))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sw.WriteLine();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (StreamWriter\ sw\ =\ File.CreateText(DUPLICATED\_FILES\_JSON))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sw.WriteLine();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Duplicate\ file\ cleared.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00182}\mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a476ea87ef1791378e669971919dbe486}{00182}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a476ea87ef1791378e669971919dbe486}{ExportDuplicateFiles}}()}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (StreamWriter\ sw\ =\ File.CreateText(DEFAULT\_TXT\_OUTPUT\_PATH))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sw.WriteLine(ToString());}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Duplicate\ file\ exported.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00191}\mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a4407b77b01a651698be9344d0fbe7a80}{00191}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a4407b77b01a651698be9344d0fbe7a80}{ExportDuplicateFiles}}(\textcolor{keywordtype}{string}\ filePath)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (StreamWriter\ sw\ =\ File.CreateText(filePath))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sw.WriteLine(ToString());}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Duplicate\ file\ exported.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00200}\mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a35e4a3054be1b3ee126f4c0f34a5b50e}{00200}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_duplicate_file_locator_library_1_1_classes_1_1_duplicate_file_locator_a35e4a3054be1b3ee126f4c0f34a5b50e}{HashIndividualFile}}(\textcolor{keywordtype}{string}\ filePath)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Path.Exists(filePath))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hash\ =\ CreateHash(filePath);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Hash\ :\ \{0\}\(\backslash\)n"{}},\ hash);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Path\ does\ not\ exist,\ please\ try\ again.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00213}00213\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00215}00215\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ Methods}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ List<string>\ GetAllFilesInDirectory(\textcolor{keywordtype}{string}\ dir)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ files\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Directory.Exists(dir))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ subdirs\ =\ Directory.GetDirectories(dir).ToList<\textcolor{keywordtype}{string}>();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\textcolor{keywordtype}{string}\ subdir\ \textcolor{keywordflow}{in}\ subdirs)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ files.AddRange(GetAllFilesInDirectory(subdir));}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ files\ in\ the\ current\ directory}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ files.AddRange(Directory.GetFiles(dir).ToList<\textcolor{keywordtype}{string}>());}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ files;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00241}00241\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ ByteArrayToString(\textcolor{keywordtype}{byte}[]\ arrInput)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00253}00253\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ StringBuilder\ sOutput\ =\ \textcolor{keyword}{new}\ StringBuilder(arrInput.Length);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ arrInput.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sOutput.Append(arrInput[i].ToString(\textcolor{stringliteral}{"{}X2"{}}));}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sOutput.ToString();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00261}00261\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00272}00272\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ CreateHash(\textcolor{keywordtype}{string}\ filePath)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00273}00273\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Bitmap\ img\ =\ \textcolor{keyword}{new}\ Bitmap(filePath);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ tmpSource;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ tmpHash;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ byte\ array\ from\ source\ data.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MemoryStream\ stream\ =\ \textcolor{keyword}{new}\ MemoryStream();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ img.Save(stream,\ System.Drawing.Imaging.ImageFormat.Bmp);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tmpSource\ =\ stream.ToArray();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ hash\ based\ on\ source\ data.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tmpHash\ =\ \textcolor{keyword}{new}\ MD5CryptoServiceProvider().ComputeHash(tmpSource);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ByteArrayToString(tmpHash);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO\ Add\ error.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00296}00296\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00307}00307\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ AddDuplicateFile(\textcolor{keywordtype}{string}\ hash,\ \textcolor{keywordtype}{string}\ filePath)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00308}00308\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_duplicatedFiles.Any(file\ =>\ file.Hash\ ==\ hash))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ DuplicatedFile\ object\ with\ the\ same\ hash\ value\ and\ add\ duplicate\ path.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDuplicatedFile\ duplicateFile\ =\ \_duplicatedFiles.FirstOrDefault(file\ =>\ file.Hash\ ==\ hash);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00313}00313\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ adds\ file\ path\ if\ it's\ different\ to\ what's\ already\ be\ found.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (duplicateFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a1335151ae7ed9b532d2791d510b4c851}{OriginalPath}}\ !=\ filePath\ \&\&\ !duplicateFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_a52a4e6596ed6c9259ad324f87ded7949}{DuplicatePaths}}.Contains(filePath))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ duplicateFile.\mbox{\hyperlink{interface_duplicate_file_locator_library_1_1_interfaces_1_1_i_duplicated_file_ae6552449625f4f6ee2fee16fb0fe7b29}{AddDuplicatePath}}(filePath);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ new\ object\ with\ the\ hash\ and\ duplicate\ path.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_duplicatedFiles.Add(\textcolor{keyword}{new}\ DuplicatedFile(hash,\ filePath));}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00326}00326\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00327}00327\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00338}00338\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ FindOriginalPaths(List<string>\ filePaths,\ List<string>\ hashesFound)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00339}00339\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (filePaths.Count\ ==\ hashesFound.Count)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ file\ \textcolor{keywordflow}{in}\ \_duplicatedFiles)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ only\ find\ original\ path\ if\ the\ duplicate\ file\ object\ doesn't\ have\ one}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file.OriginalPath\ ==\ \textcolor{keywordtype}{string}.Empty)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ hashesFound.IndexOf(file.Hash);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00348}00348\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ add\ the\ ogPath\ if\ hash\ exists}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >=\ 0)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ ogPath\ =\ filePaths[i];}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file.OriginalPath\ =\ ogPath;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Note:\ Can't\ find\ original\ files\ as\ filePaths\ and\ hashesFound\ are\ different\ in\ length.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00363}00363\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00364}00364\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00368}00368\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ LoadData()}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00369}00369\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ json\ =\ \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_duplicatedFilesJson\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json\ =\ File.ReadAllText(\_duplicatedFilesJson);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json\ =\ File.ReadAllText(DUPLICATED\_FILES\_JSON);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00378}00378\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00379}00379\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ deserialized\ =\ JsonConvert.DeserializeObject<List<DuplicatedFile>>(json);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_duplicatedFiles\ =\ deserialized.Cast<IDuplicatedFile>().ToList();}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00387}00387\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00389}00389\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00390}00390\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00394}00394\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SaveData()}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00395}00395\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ json\ =\ JsonConvert.SerializeObject(\_duplicatedFiles);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00397}00397\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_duplicatedFilesJson\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ File.WriteAllText(\_duplicatedFilesJson,\ json);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ File.WriteAllText(DUPLICATED\_FILES\_JSON,\ json);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00406}00406\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00407}00407\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00412}00412\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ ToString()}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00413}00413\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ output\ =\ String.Empty;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ file\ \textcolor{keywordflow}{in}\ \_duplicatedFiles)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ +=\ file\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00419}00419\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (output\ ==\ String.Empty)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ =\ \textcolor{stringliteral}{"{}No\ duplicate\ files\ found."{}};}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00424}00424\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ output;}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00426}00426\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00427}00427\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00440}00440\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ AreImagesEqual(Bitmap\ bmp1,\ Bitmap\ bmp2)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00441}00441\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bmp1.Width\ !=\ bmp2.Width\ ||\ bmp1.Height\ !=\ bmp2.Height)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00444}00444\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ bmp1.Height;\ y++)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ bmp1.Width;\ x++)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bmp1.GetPixel(x,\ y)\ !=\ bmp2.GetPixel(x,\ y))}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00453}00453\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00455}00455\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00456}00456\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00463}00463\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ CheckHash(\textcolor{keywordtype}{string}\ hash,\ List<string>\ hashesFound)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00464}00464\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hash\ ==\ \textcolor{keywordtype}{string}.Empty)}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ returns\ true\ if\ hash\ is\ already\ a\ known\ duplicate\ or\ if\ the\ hash\ is\ contained\ within}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ temporary\ list\ of\ known\ hashes.}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_duplicatedFiles.Any(file\ =>\ file.Hash\ ==\ hash)\ ||\ hashesFound.Contains(hash);}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00471}00471\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00472}00472\ }
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00473}00473\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00474}00474\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_duplicate_file_locator_8cs_source_l00475}00475\ \}}
+
+\end{DoxyCode}

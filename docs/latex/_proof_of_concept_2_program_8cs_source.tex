@@ -1,0 +1,295 @@
+\doxysection{Program.\+cs}
+\hypertarget{_proof_of_concept_2_program_8cs_source}{}\label{_proof_of_concept_2_program_8cs_source}\index{ProofOfConcept/Program.cs@{ProofOfConcept/Program.cs}}
+\mbox{\hyperlink{_proof_of_concept_2_program_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Diagnostics;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Drawing;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Security.Cryptography;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }static\ System.Net.Mime.MediaTypeNames;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00010}00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_proof_of_concept}{ProofOfConcept}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{class\ }Program}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00014}00014\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Function\ below\ usies\ code\ from\ the\ MD5\ Comparison.}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ DEFAULT\_TXT\_OUTPUT\_PATH\ =\ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)duplicated-\/images.txt"{}};}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ DUPLICATED\_IMAGES\_JSON\ =\ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)duplicated-\/images.json"{}};}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ TEST\_JSON\ =\ \textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test.json"{}};}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{string}\ ByteArrayToString(\textcolor{keywordtype}{byte}[]\ arrInput)}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ StringBuilder\ sOutput\ =\ \textcolor{keyword}{new}\ StringBuilder(arrInput.Length);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ arrInput.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sOutput.Append(arrInput[i].ToString(\textcolor{stringliteral}{"{}X2"{}}));}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sOutput.ToString();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{string}\ CreateHashOfImage(\textcolor{keywordtype}{string}\ path)}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ref:\ https://learn.microsoft.com/en-\/us/troubleshoot/developer/visualstudio/csharp/language-\/compilers/compute-\/hash-\/values}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ref:\ https://www.sitepoint.com/community/t/bitmap-\/to-\/byte-\/array-\/in-\/c/1877}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Bitmap\ img\ =\ \textcolor{keyword}{new}\ Bitmap(path);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ tmpSource;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}[]\ tmpHash;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Create\ a\ byte\ array\ from\ source\ data.}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MemoryStream\ stream\ =\ \textcolor{keyword}{new}\ MemoryStream();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ img.Save(stream,\ System.Drawing.Imaging.ImageFormat.Bmp);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tmpSource\ =\ stream.ToArray();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Compute\ hash\ based\ on\ source\ data.}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tmpHash\ =\ \textcolor{keyword}{new}\ MD5CryptoServiceProvider().ComputeHash(tmpSource);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ByteArrayToString(tmpHash);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//static\ bool\ CompareFiles(string\ file1,\ string\ file2)}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\{}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ Console.WriteLine(file2);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ Bitmap\ image1\ =\ new\ Bitmap(file1);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ Bitmap\ image2\ =\ new\ Bitmap(file2);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ if\ (image1.Width\ !=\ image2.Width\ ||\ image1.Height\ !=\ image2.Height)}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ return\ false;}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //for\ (int\ i=0;\ i\ <\ image1.Width;\ i++)}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //\{}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //\ \ \ \ for\ (int\ j\ =\ 0;\ j\ <\ image1.Height;\ j++)}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //\ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //\ \ \ \ \ \ \ \ var\ img1\_ref\ =\ image1.GetPixel(i,\ j);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //\ \ \ \ \ \ \ \ var\ img2\_ref\ =\ image2.GetPixel(i,\ j);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //\ \ \ \ \ \ \ \ if\ (img1\_ref\ !=\ img2\_ref)}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //\ \ \ \ \ \ \ \ \ \ \ \ return\ false;}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ //\}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ string\ image1Hash\ =\ CreateHashOfImage(image1);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ string\ image2Hash\ =\ CreateHashOfImage(image2);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ return\ image1Hash\ ==\ image2Hash;}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ List<string>\ GetAllFilesInDirectory(\textcolor{keywordtype}{string}\ dir)}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ files\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Directory.Exists(dir))}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ subdirs\ =\ Directory.GetDirectories(dir).ToList<\textcolor{keywordtype}{string}>();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\textcolor{keywordtype}{string}\ subdir\ \textcolor{keywordflow}{in}\ subdirs)}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ files.AddRange(GetAllFilesInDirectory(subdir));}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ files\ in\ the\ current\ directory}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ files.AddRange(Directory.GetFiles(dir).ToList<\textcolor{keywordtype}{string}>());}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ files;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{//static\ DuplicatedImage\ FindDuplicateImage(string\ ogFile,\ List<string>\ files)}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\{}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ DuplicatedImage\ duplicatedImage\ =\ null;}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ foreach\ (string\ file\ in\ files)}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ if(CompareFiles(ogFile,\ file))}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ if\ (duplicatedImage\ ==\ null)}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ duplicatedImage\ =\ new\ DuplicatedImage(ogFile,\ file);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ else}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ duplicatedImage.AddDuplicate(file);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ return\ duplicatedImage;}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ RemoveCheckedFileFromList(\textcolor{keywordtype}{string}\ file,\ List<String>\ files)}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ files.Remove(file);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Main(\textcolor{keywordtype}{string}[]\ args)}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ DuplicatedImageFinder.LoadData(DUPLICATED\_IMAGES\_JSON);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}(S)earch\ Folder\(\backslash\)n(D)isplay\ Duplicate\ Files\(\backslash\)n(C)lear\ Duplicate\ File\ Log\(\backslash\)n(E)xport\ Duplicate\ Log\(\backslash\)n(V)erify\ Duplicated\ Files\(\backslash\)n(H)ash\ Individual\ File\(\backslash\)n(Q)uit?"{}});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ operation\ =\ Console.ReadLine();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (operation[0]\ ==\ \textcolor{charliteral}{'S'}\ ||\ operation[0]\ ==\ \textcolor{charliteral}{'s'})}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.Write(\textcolor{stringliteral}{"{}Enter\ Folder\ to\ search:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ dirPath\ =\ Console.ReadLine();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Path.Exists(dirPath))}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ filePaths\ =\ GetAllFilesInDirectory(dirPath);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ totalImages\ =\ filePaths.Count;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (totalImages\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ imagesHashed\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ list\ of\ every\ hash\ found}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ hashesFound\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<filePaths.Count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ progress\ =\ (imagesHashed*100)\ /\ totalImages;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ConsoleUtility.WriteProgressBar(progress,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hash\ =\ CreateHashOfImage(filePaths[i]);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ imagesHashed++;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hash\ !=\ \textcolor{keywordtype}{string}.Empty)}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hashesFound.Contains(hash))}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DuplicatedImageFinder.AddHash(hash,\ filePaths[i]);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RemoveCheckedFileFromList(filePaths[i],\ filePaths);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hashesFound.Add(hash);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//int\ progress\ =\ (i\ *\ 100)\ /\ files.Count\ -\/\ 1;}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ConsoleUtility.WriteProgressBar(progress,\ true);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//DuplicatedImage\ image\ =\ FindDuplicateImage(files[i],\ files.GetRange(i\ +\ 1,\ files.Count\ -\/\ (i\ +\ 1)));}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ (image\ !=\ null)}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\{}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ StoreDuplicatedImages(image);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\}}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ConsoleUtility.WriteProgressBar(100,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}\(\backslash\)nTotal\ Images\ checked\ :\ \{0\}\(\backslash\)nCollating\ Data\ now..."{}},\ imagesHashed);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DuplicatedImageFinder.FindOriginals(filePaths,\ hashesFound);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DuplicatedImageFinder.SaveData(DUPLICATED\_IMAGES\_JSON);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ConsoleUtility.WriteProgressBar(100,\ true);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}There\ are\ no\ files\ in\ this\ directory\ and\ it's\ subdirectories,\ please\ try\ again.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Path\ does\ not\ exist,\ please\ try\ again.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (operation[0]\ ==\ \textcolor{charliteral}{'D'}\ ||\ operation[0]\ ==\ \textcolor{charliteral}{'d'})}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}\(\backslash\)n\{0\}\(\backslash\)n"{}},\ DuplicatedImageFinder.DisplayData());}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (operation[0]\ ==\ \textcolor{charliteral}{'C'}\ ||\ operation[0]\ ==\ \textcolor{charliteral}{'c'})}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Needs\ to\ be\ fixed}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (StreamWriter\ sw\ =\ File.CreateText(TEST\_JSON))}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sw.WriteLine();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Duplicate\ file\ cleared.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (operation[0]\ ==\ \textcolor{charliteral}{'E'}\ ||\ operation[0]\ ==\ \textcolor{charliteral}{'e'})}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (StreamWriter\ sw\ =\ File.CreateText(DEFAULT\_TXT\_OUTPUT\_PATH))}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sw.WriteLine(DuplicatedImageFinder.DisplayData());}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Duplicate\ file\ exported.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (operation[0]\ ==\ \textcolor{charliteral}{'V'}\ ||\ operation[0]\ ==\ \textcolor{charliteral}{'v'})}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Verify\ duplicate\ images\ found...\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DuplicatedImageFinder.VerifyDuplicates();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DuplicatedImageFinder.SaveData(DUPLICATED\_IMAGES\_JSON);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (operation[0]\ ==\ \textcolor{charliteral}{'H'}\ ||\ operation[0]\ ==\ \textcolor{charliteral}{'h'})}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.Write(\textcolor{stringliteral}{"{}Enter\ path\ of\ file\ to\ hash:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ filePath\ =\ Console.ReadLine();}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Path.Exists(filePath))}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ hash\ =\ CreateHashOfImage(filePath);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Hash\ of\ image\ :\ \{0\}\(\backslash\)n"{}},\ hash);}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Path\ does\ not\ exist,\ please\ try\ again.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (operation[0]\ ==\ \textcolor{charliteral}{'Q'}\ ||\ operation[0]\ ==\ \textcolor{charliteral}{'q'})}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Thank\ you,\ good\ bye!"{}});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};\ \textcolor{comment}{//\ Quit's\ program}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Invalid\ input,\ please\ try\ again.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00266}00266\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//string\ originalFile\ =\ "{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)P1040133.JPG"{};}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//string\ diffNameFile\ =\ "{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)diff\_name.JPG"{};}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//string\ sameNameFile\ =\ "{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)same\_name\(\backslash\)\(\backslash\)P1040133.JPG"{};}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//string\ sameNameDiffDateFile\ =\ "{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)Alexa\(\backslash\)\(\backslash\)repos\(\backslash\)\(\backslash\)duplicate-\/file-\/locator\(\backslash\)\(\backslash\)test\_files\(\backslash\)\(\backslash\)same\_name\_diff\_date\(\backslash\)\(\backslash\)P1040133.JPG"{};}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Console.WriteLine("{}Comparing\ \(\backslash\)n\{0\}\ \(\backslash\)nwith\ \(\backslash\)n\{1\}"{},\ originalFile,\ originalFile);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Console.WriteLine("{}Result:\ \{0\}\(\backslash\)n"{},\ CompareFiles(originalFile,\ originalFile));}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Console.WriteLine("{}Comparing\ \(\backslash\)n\{0\}\ \(\backslash\)nwith\ \(\backslash\)n\{1\}"{},\ originalFile,\ diffNameFile);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Console.WriteLine("{}Result:\ \{0\}\(\backslash\)n"{},\ CompareFiles(originalFile,\ diffNameFile));}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Console.WriteLine("{}Comparing\ \(\backslash\)n\{0\}\ \(\backslash\)nwith\ \(\backslash\)n\{1\}"{},\ originalFile,\ sameNameFile);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Console.WriteLine("{}Result:\ \{0\}\(\backslash\)n"{},\ CompareFiles(originalFile,\ sameNameFile));}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Console.WriteLine("{}Comparing\ \(\backslash\)n\{0\}\ \(\backslash\)nwith\ \(\backslash\)n\{1\}"{},\ originalFile,\ sameNameDiffDateFile);}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Console.WriteLine("{}Result:\ \{0\}\(\backslash\)n"{},\ CompareFiles(originalFile,\ sameNameDiffDateFile));}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00286}00286\ }
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00287}00287\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00288}00288\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_proof_of_concept_2_program_8cs_source_l00289}00289\ \}}
+
+\end{DoxyCode}
